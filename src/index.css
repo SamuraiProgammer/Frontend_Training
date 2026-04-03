@@ -1,0 +1,44 @@
+@import "tailwindcss";
+/* @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap'); */
+
+body {
+  margin: 0;
+  font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.marquee-container {
+  width: 100%;
+  overflow: hidden;
+  background: #391085;
+  padding: 10px 0;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: scroll 15s linear infinite;
+}
+
+.marquee-track span {
+  color: white;
+  font-weight: 600;
+  margin-right: 40px;
+  white-space: nowrap;
+  font-size: 14px;
+}
+
+/* Infinite scrolling animation */
+@keyframes scroll {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Pause on hover (optional) */
+.marquee-container:hover .marquee-track {
+  animation-play-state: paused;
+}

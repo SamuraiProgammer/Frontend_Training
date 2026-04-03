@@ -1,0 +1,134 @@
+[
+    {
+    "_id": "6937bf9bb48964fa977992aa",
+    "title": "Applied Child Psychology: Insights and Interventions",
+    "subtitle": "This course delves into the intricacies of child and adolescent development, exploring key theories, milestones, mental health challenges, and culturally relevant intervention strategies. With a strong focus on the Indian context, participants will gain hands-on experience through practical case studies, therapeutic techniques, and parent-child dynamics to foster holistic mental well-being.",
+    "duration": "30",
+    "module": "4",
+    "price": 3500,
+    "level": "Beginner",
+    "category": "Child and Adolescent",
+    "subcategory": "undergraduate",
+    "mode": ["Offline", "Online", "Hybrid"],
+    "learning": [
+        "Understand developmental theories and milestones across childhood and adolescence.",
+        "Identify and address common mental health challenges in children and adolescents.",
+        "Develop culturally sensitive therapeutic techniques to engage young clients.",
+        "Analyze case studies to formulate effective, ethical intervention strategies.",
+        "Strengthen skills in parent-child communication for fostering well-being."
+    ],
+    "skills": [
+        "Critical Analytical Thinking",
+        "Empathy-Based Communication",
+        "Culturally-Sensitive Interventions",
+        "Practical Case Formulation",
+        "Therapeutic Application Skills"
+    ],
+    "pedagogy": [
+        { "image": "https://corportal.s3.ap-south-1.amazonaws.com/jindalpedagogy/blended-learning.svg", "title": "Blended Learning", "description": "A combination of in-person and online formats allows for flexibility while exposing students to diverse methods of delivering therapy." },
+        { "image": "https://corportal.s3.ap-south-1.amazonaws.com/jindalpedagogy/roleplays.svg", "title": "Role-Playing and Simulations", "description": "Structured role-plays and mock sessions simulate realistic client interactions." },
+        { "image": "https://corportal.s3.ap-south-1.amazonaws.com/jindalpedagogy/case-based.svg", "title": "Case-Based Learning", "description": "Use of case studies and real-life examples allows students to explore various scenarios." },
+        { "image": "https://corportal.s3.ap-south-1.amazonaws.com/jindalpedagogy/experimentallearning.svg", "title": "Experiential Learning", "description": "Hands-on practice through real-time consultations, role-playing, and case simulations." },
+        { "image": "https://corportal.s3.ap-south-1.amazonaws.com/jindalpedagogy/reflective.svg", "title": "Reflective Learning", "description": "Regular debriefs, feedback sessions, and journaling to build self-awareness and critical thinking." },
+        { "image": "https://corportal.s3.ap-south-1.amazonaws.com/jindalpedagogy/guided-reading.svg", "title": "Guided Reading and Integration", "description": "Incorporating relevant readings and research papers to provide foundational knowledge." },
+        { "image": "https://corportal.s3.ap-south-1.amazonaws.com/jindalpedagogy/Feedback.svg", "title": "Feedback-Oriented Assessment", "description": "Ongoing assessments and constructive feedback for continuous skill refinement." },
+        { "image": "https://corportal.s3.ap-south-1.amazonaws.com/jindalpedagogy/collaborative.svg", "title": "Collaborative Learning", "description": "Group discussions, peer reviews, and collaborative activities to foster teamwork." }
+    ],
+    "courseStructure": [
+        { "heading": "Module 1: Developmental Milestones and Dynamics", "subheading": ["Theories of development (Piaget, Erikson, Vygotsky).", "Physical, cognitive, emotional, and social milestones in childhood and adolescence.", "Indian family dynamics and their influence on development."] },
+        { "heading": "Module 2: Mental Health Challenges in Children and Adolescents", "subheading": ["Behavioral issues: ADHD, Conduct Disorder.", "Emotional challenges: Anxiety, Depression, Phobias.", "The impact of trauma, abuse, and bullying in Indian contexts."] },
+        { "heading": "Module 3: Therapeutic Techniques and Intervention Strategies", "subheading": ["Introduction to play therapy, art therapy, and narrative therapy.", "Building resilience and coping skills.", "Parent-child communication in fostering mental well-being."] },
+        { "heading": "Module 4: Practical Understanding Through Case Studies", "subheading": ["Case formulation: Understanding the child's context and environment.", "Risk assessment and ethical considerations in dealing with minors.", "Indian cultural and systemic influences on child psychology cases."] }
+    ],
+    "outcome": [
+        { "title": "In-depth Understanding of Developmental Theories", "description": "Participants will master key theories (Piaget, Erikson, Vygotsky) and their application in understanding childhood and adolescent development." },
+        { "title": "Holistic Perspective on Developmental Milestones", "description": "Gain insights into physical, cognitive, emotional, and social milestones, emphasizing how Indian family dynamics shape these processes." },
+        { "title": "Expertise in Mental Health Challenges", "description": "Recognize and address behavioral and emotional challenges such as ADHD, anxiety, depression, and trauma, with a focus on their socio-cultural dimensions." },
+        { "title": "Proficiency in Therapeutic Techniques", "description": "Develop foundational skills in play therapy, art therapy, and narrative therapy while fostering resilience and effective parent-child communication." },
+        { "title": "Practical Application of Case Study Analysis", "description": "Learn to formulate cases with ethical sensitivity, perform risk assessments, and incorporate Indian cultural and systemic factors into therapeutic interventions." },
+        { "title": "Critical and Empathetic Problem-Solving", "description": "Build problem-solving skills that integrate critical thinking with empathy, ensuring the best outcomes for clients in therapeutic settings cases with analytical rigor and cultural empathy." }
+    ],
+    "batchType": "Weekdays/Weekend",
+    "batches": [],
+    "elective": [],
+    "instructors": [
+        { "_id": "67b9a5ebd17ac15a56892b42", "name": "Anwesha Choudhury ", "imageUrl": "https://corportal.s3.ap-south-1.amazonaws.com/upload/profilePic/e47c7164754c25a4baced7889ce88d22", "degree": "Masters in Clinical Psychology ", "specialization": "Counseling Psychology, Clinical Psychology, I/O Psychology ", "experience": "1.5 years of experience as a trainer. \nTrained more than 500+ students" }
+    ],
+    "isActive": true,
+    "createdAt": "2025-12-09T06:20:11.737Z",
+    "updatedAt": "2025-12-09T06:20:11.737Z",
+    "images": { "Courseimage": "https://corportal.s3.ap-south-1.amazonaws.com/upload/CourseStructure/Course1.png", "Outcomeimage": "https://corportal.s3.ap-south-1.amazonaws.com/upload/Outcomes/Outcome4.svg" },
+    "courseImageUrl": "https://corportal.s3.ap-south-1.amazonaws.com/upload/profilePic/83fc1f8f452fe5890db1b4790e0b43ad",
+    "university": "6776287ec8d0d16564dcba7d",
+    "type": "internships",
+    "period": "1",
+    "courseType": "live",
+    "batchIds": []
+},
+{
+    "_id": "6937bf9bb48964fa977992bb",
+    "title": "Applied Child Psychology: Insights and Interventions",
+    "subtitle": "This course delves into the intricacies of child and adolescent development, exploring key theories, milestones, mental health challenges, and culturally relevant intervention strategies. With a strong focus on the Indian context, participants will gain hands-on experience through practical case studies, therapeutic techniques, and parent-child dynamics to foster holistic mental well-being.",
+    "duration": "30",
+    "module": "4",
+    "price": 3500,
+    "level": "Beginner",
+    "category": "Child and Adolescent",
+    "subcategory": "undergraduate",
+    "mode": ["Offline", "Online", "Hybrid"],
+    "learning": [
+        "Understand developmental theories and milestones across childhood and adolescence.",
+        "Identify and address common mental health challenges in children and adolescents.",
+        "Develop culturally sensitive therapeutic techniques to engage young clients.",
+        "Analyze case studies to formulate effective, ethical intervention strategies.",
+        "Strengthen skills in parent-child communication for fostering well-being."
+    ],
+    "skills": [
+        "Critical Analytical Thinking",
+        "Empathy-Based Communication",
+        "Culturally-Sensitive Interventions",
+        "Practical Case Formulation",
+        "Therapeutic Application Skills"
+    ],
+    "pedagogy": [
+        { "image": "https://corportal.s3.ap-south-1.amazonaws.com/jindalpedagogy/blended-learning.svg", "title": "Blended Learning", "description": "A combination of in-person and online formats allows for flexibility while exposing students to diverse methods of delivering therapy." },
+        { "image": "https://corportal.s3.ap-south-1.amazonaws.com/jindalpedagogy/roleplays.svg", "title": "Role-Playing and Simulations", "description": "Structured role-plays and mock sessions simulate realistic client interactions." },
+        { "image": "https://corportal.s3.ap-south-1.amazonaws.com/jindalpedagogy/case-based.svg", "title": "Case-Based Learning", "description": "Use of case studies and real-life examples allows students to explore various scenarios." },
+        { "image": "https://corportal.s3.ap-south-1.amazonaws.com/jindalpedagogy/experimentallearning.svg", "title": "Experiential Learning", "description": "Hands-on practice through real-time consultations, role-playing, and case simulations." },
+        { "image": "https://corportal.s3.ap-south-1.amazonaws.com/jindalpedagogy/reflective.svg", "title": "Reflective Learning", "description": "Regular debriefs, feedback sessions, and journaling to build self-awareness and critical thinking." },
+        { "image": "https://corportal.s3.ap-south-1.amazonaws.com/jindalpedagogy/guided-reading.svg", "title": "Guided Reading and Integration", "description": "Incorporating relevant readings and research papers to provide foundational knowledge." },
+        { "image": "https://corportal.s3.ap-south-1.amazonaws.com/jindalpedagogy/Feedback.svg", "title": "Feedback-Oriented Assessment", "description": "Ongoing assessments and constructive feedback for continuous skill refinement." },
+        { "image": "https://corportal.s3.ap-south-1.amazonaws.com/jindalpedagogy/collaborative.svg", "title": "Collaborative Learning", "description": "Group discussions, peer reviews, and collaborative activities to foster teamwork." }
+    ],
+    "courseStructure": [
+        { "heading": "Module 1: Developmental Milestones and Dynamics", "subheading": ["Theories of development (Piaget, Erikson, Vygotsky).", "Physical, cognitive, emotional, and social milestones in childhood and adolescence.", "Indian family dynamics and their influence on development."] },
+        { "heading": "Module 2: Mental Health Challenges in Children and Adolescents", "subheading": ["Behavioral issues: ADHD, Conduct Disorder.", "Emotional challenges: Anxiety, Depression, Phobias.", "The impact of trauma, abuse, and bullying in Indian contexts."] },
+        { "heading": "Module 3: Therapeutic Techniques and Intervention Strategies", "subheading": ["Introduction to play therapy, art therapy, and narrative therapy.", "Building resilience and coping skills.", "Parent-child communication in fostering mental well-being."] },
+        { "heading": "Module 4: Practical Understanding Through Case Studies", "subheading": ["Case formulation: Understanding the child's context and environment.", "Risk assessment and ethical considerations in dealing with minors.", "Indian cultural and systemic influences on child psychology cases."] }
+    ],
+    "outcome": [
+        { "title": "In-depth Understanding of Developmental Theories", "description": "Participants will master key theories (Piaget, Erikson, Vygotsky) and their application in understanding childhood and adolescent development." },
+        { "title": "Holistic Perspective on Developmental Milestones", "description": "Gain insights into physical, cognitive, emotional, and social milestones, emphasizing how Indian family dynamics shape these processes." },
+        { "title": "Expertise in Mental Health Challenges", "description": "Recognize and address behavioral and emotional challenges such as ADHD, anxiety, depression, and trauma, with a focus on their socio-cultural dimensions." },
+        { "title": "Proficiency in Therapeutic Techniques", "description": "Develop foundational skills in play therapy, art therapy, and narrative therapy while fostering resilience and effective parent-child communication." },
+        { "title": "Practical Application of Case Study Analysis", "description": "Learn to formulate cases with ethical sensitivity, perform risk assessments, and incorporate Indian cultural and systemic factors into therapeutic interventions." },
+        { "title": "Critical and Empathetic Problem-Solving", "description": "Build problem-solving skills that integrate critical thinking with empathy, ensuring the best outcomes for clients in therapeutic settings cases with analytical rigor and cultural empathy." }
+    ],
+    "batchType": "Weekdays/Weekend",
+    "batches": [],
+    "elective": [],
+    "instructors": [
+        { "_id": "67b9a5ebd17ac15a56892b42", "name": "Anwesha Choudhury ", "imageUrl": "https://corportal.s3.ap-south-1.amazonaws.com/upload/profilePic/e47c7164754c25a4baced7889ce88d22", "degree": "Masters in Clinical Psychology ", "specialization": "Counseling Psychology, Clinical Psychology, I/O Psychology ", "experience": "1.5 years of experience as a trainer. \nTrained more than 500+ students" }
+    ],
+    "isActive": true,
+    "createdAt": "2025-12-09T06:20:11.737Z",
+    "updatedAt": "2025-12-09T06:20:11.737Z",
+    "images": { "Courseimage": "https://corportal.s3.ap-south-1.amazonaws.com/upload/CourseStructure/Course1.png", "Outcomeimage": "https://corportal.s3.ap-south-1.amazonaws.com/upload/Outcomes/Outcome4.svg" },
+    "courseImageUrl": "https://corportal.s3.ap-south-1.amazonaws.com/upload/profilePic/83fc1f8f452fe5890db1b4790e0b43ad",
+    "university": "6776287ec8d0d16564dcba7d",
+    "type": "internships",
+    "period": "1",
+    "courseType": "live",
+    "batchIds": []
+}
+]

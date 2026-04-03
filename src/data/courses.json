@@ -1,0 +1,43 @@
+[
+  {
+    "_id": "676001274ffa3c6354350ca6",
+    "title": "Applied Child Psychology: Insights and Interventions",
+    "subtitle": "This course delves into the intricacies of child and adolescent development...",
+    "duration": "30",
+    "price": 3500,
+    "category": "Child and Adolescent",
+    "subcategory": "undergraduate",
+    "mode": ["Offline", "Online", "Hybrid"],
+    "courseImageUrl": "https://corportal.s3.ap-south-1.amazonaws.com/upload/profilePic/83fc1f8f452fe5890db1b4790e0b43ad",
+    "level": "Beginner",
+    "type": "internships"
+  },
+
+  {
+    "_id": "2",
+    "title": "Advanced Clinical Psychology",
+    "subtitle": "Deep dive into clinical frameworks and therapy models.",
+    "duration": "60",
+    "price": 5000,
+    "category": "Clinical",
+    "subcategory": "postgraduate",
+    "mode": ["Online"],
+    "courseImageUrl": "https://via.placeholder.com/300",
+    "level": "Advanced",
+    "type": "training"
+  },
+
+  {
+    "_id": "3",
+    "title": "Therapist Skill Building",
+    "subtitle": "Build practical therapy skills for professionals.",
+    "duration": "40",
+    "price": 4500,
+    "category": "Therapy",
+    "subcategory": "earlycareer",
+    "mode": ["Hybrid"],
+    "courseImageUrl": "https://via.placeholder.com/300",
+    "level": "Intermediate",
+    "type": "workshops"
+  }
+]
