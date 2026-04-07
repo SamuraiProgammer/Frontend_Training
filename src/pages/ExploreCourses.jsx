@@ -177,8 +177,8 @@ const ExploreCourses = () => {
             style={{
               
               color: purple,
-              fontSize: "clamp(1.6rem, 5vw, 4rem)",
-              fontWeight: 800,
+              fontSize: "clamp(1.6rem, 5vw, 2.5rem)",
+              fontWeight: 500,
               lineHeight: 1.15,
               letterSpacing: "-0.5px",
             }}

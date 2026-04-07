@@ -25,7 +25,7 @@ const FooterBanner = () => {
         <div className="flex gap-3">
           <button className="px-5 py-2 rounded-lg text-sm font-semibold text-black 
             bg-[#faad14] cursor-pointer
-            hover:scale-105 hover:shadow-md transition-all duration-300" onClick={()=>navigate("/register")}>
+            hover:scale-105 hover:shadow-md transition-all duration-300" onClick={() => navigate("/register", { state: { heading: "Explore Before You Enroll @ 500" } })}>
             Register
           </button>
         </div>

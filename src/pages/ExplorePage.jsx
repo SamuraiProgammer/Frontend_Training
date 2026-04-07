@@ -167,7 +167,7 @@ function ProgramCard({ card }) {
         >
           Explore
         </button>
-        <button className="btn-register" onClick={() => navigate(`/register`)}>
+        <button className="btn-register" onClick={() => navigate(`/register`,{ state: { heading: card.heading } })}>
           Register
         </button>
       </div>
