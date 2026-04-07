@@ -1,6 +1,4 @@
-import axios from "axios";
 import { useState, useRef, useEffect } from "react";
-import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
@@ -304,7 +302,6 @@ const dropdownItemStyle = {
 
 export default function RegisterPage() {
   const navigate = useNavigate();
-  const apiUrl = import.meta.env.VITE_API_URL;
 
   const [form, setForm] = useState({
     name: "",
@@ -319,7 +316,6 @@ export default function RegisterPage() {
   const [codeOpen, setCodeOpen] = useState(false);
   const [codeSearch, setCodeSearch] = useState("");
   const [submitted, setSubmitted] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const codeRef = useRef(null);
 
   // Close country code dropdown on outside click
@@ -357,41 +353,11 @@ export default function RegisterPage() {
     return e;
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
     const e = validate();
     setErrors(e);
-
-    if (Object.keys(e).length > 0 || isSubmitting) return;
-
-    if (!apiUrl) {
-      toast.error("API URL is not configured.");
-      return;
-    }
-
-    try {
-      setIsSubmitting(true);
-
-      const payload = {
-        name: form.name.trim(),
-        email: form.email.trim(),
-        phone_no: `${form.countryCode.code}${form.phone}`,
-        college: form.college.trim(),
-        course: form.course.trim(),
-      };
-
-      const response = await axios.post(`${apiUrl}/auth/register`, payload);
-
-      if (response.status === 201) {
-        setSubmitted(true);
-      }
-    } catch (error) {
-      const message = axios.isAxiosError(error)
-        ? error.response?.data?.message || error.message
-        : "Something went wrong. Please try again.";
-
-      toast.error(message);
-    } finally {
-      setIsSubmitting(false);
+    if (Object.keys(e).length === 0) {
+      setSubmitted(true);
     }
   };
 
@@ -409,7 +375,7 @@ export default function RegisterPage() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          fontFamily: "'Nunito', sans-serif",
+          fontFamily: "'Arial', sans-serif",
           padding: "24px",
         }}
       >
@@ -527,7 +493,7 @@ export default function RegisterPage() {
                 display: "inline-block",
                 background: "#1a1a2e",
                 color: "#fff",
-                fontFamily: "'Nunito', sans-serif",
+                fontFamily: "'Arial', sans-serif",
                 fontSize: "0.72rem",
                 fontWeight: 700,
                 letterSpacing: "0.8px",
@@ -551,7 +517,7 @@ export default function RegisterPage() {
             >
               Register for a Programme
             </h1>
-            <p style={{ fontFamily: "Nunito, sans-serif", fontSize: "0.87rem", color: "#888", lineHeight: 1.6 }}>
+            <p style={{ fontFamily: "'Arial', sans-serif", fontSize: "0.87rem", color: "#888", lineHeight: 1.6 }}>
               Fill in your details and we'll get back to you shortly.
             </p>
           </div>
@@ -780,35 +746,32 @@ export default function RegisterPage() {
             <button
               type="button"
               onClick={handleSubmit}
-              disabled={isSubmitting}
               style={{
                 width: "100%",
                 padding: "15px",
                 borderRadius: "50px",
                 border: "none",
-                background: isSubmitting ? "#ffe08a" : "#faad14",
+                background: "#5b4fcf",
                 color: "#fff",
                 fontWeight: 700,
                 fontSize: "1rem",
                 letterSpacing: "0.3px",
-                cursor: isSubmitting ? "not-allowed" : "pointer",
+                cursor: "pointer",
                 transition: "all 0.2s ease",
                 boxShadow: "0 4px 16px rgba(91,79,207,0.3)",
-                opacity: isSubmitting ? 0.85 : 1,
               }}
               onMouseEnter={(e) => {
-                if (isSubmitting) return;
-                e.currentTarget.style.background = "#f39c12";
+                e.currentTarget.style.background = "#4338b5";
                 e.currentTarget.style.transform = "translateY(-2px)";
                 e.currentTarget.style.boxShadow = "0 6px 20px rgba(91,79,207,0.4)";
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.background = isSubmitting ? "#ffe08a" : "#faad14";
+                e.currentTarget.style.background = "#5b4fcf";
                 e.currentTarget.style.transform = "translateY(0)";
                 e.currentTarget.style.boxShadow = "0 4px 16px rgba(91,79,207,0.3)";
               }}
             >
-              {isSubmitting ? "Submitting..." : "Submit Registration →"}
+              Submit Registration →
             </button>
 
             <p

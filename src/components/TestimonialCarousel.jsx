@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { CARDS } from "../constants/clientsData";
 
-
 const GAP = 20; // px — keep in sync with the inline gap style
 
 // ── Sub-components ───────────────────────────────────────────────────
@@ -53,7 +52,7 @@ function PhotoCard({ card }) {
             : "opacity-0 translate-y-3 group-hover:opacity-100 group-hover:translate-y-0"
         }`}
       >
-        <blockquote className="text-[16px] leading-[1.5] text-[#1a1a2e] italic mb-4">
+        <blockquote className="text-[12px] leading-[1.5] text-[#1a1a2e] italic mb-4">
           {card.quote}
         </blockquote>
 
@@ -69,15 +68,15 @@ function PhotoCard({ card }) {
 
 export default function TestimonialCarousel() {
   const [VISIBLE, setVISIBLE] = useState(3);
-  const photoCards = CARDS.filter(card => card.type === "photo");
+  const photoCards = CARDS.filter((card) => card.type === "photo");
   const total = photoCards.length;
 
   // Clone array for infinite loop: [...last VISIBLE, ...original, ...first VISIBLE]
- const allCards = [
-  ...photoCards.slice(-VISIBLE),
-  ...photoCards,
-  ...photoCards.slice(0, VISIBLE),
-];
+  const allCards = [
+    ...photoCards.slice(-VISIBLE),
+    ...photoCards,
+    ...photoCards.slice(0, VISIBLE),
+  ];
 
   // Start pointing at the first real card (after prepended clones)
   const [position, setPosition] = useState(VISIBLE);
@@ -85,7 +84,7 @@ export default function TestimonialCarousel() {
   const [isMoving, setIsMoving] = useState(false);
 
   // Track dot active state separately (maps to 0–5)
-  const realIndex = ((position - VISIBLE) % total + total) % total;
+  const realIndex = (((position - VISIBLE) % total) + total) % total;
 
   const trackRef = useRef(null);
   const cardWidthRef = useRef(0);
@@ -95,64 +94,65 @@ export default function TestimonialCarousel() {
     if (!trackRef.current) return;
     const track = trackRef.current;
     const firstCard = track.children[0];
-    if (firstCard) cardWidthRef.current = firstCard.getBoundingClientRect().width;
+    if (firstCard)
+      cardWidthRef.current = firstCard.getBoundingClientRect().width;
   }, []);
 
   useEffect(() => {
-  const handleResize = () => {
-    setTimeout(() => {
-      measureCard();
-    }, 50); // wait for layout to settle
-  };
+    const handleResize = () => {
+      setTimeout(() => {
+        measureCard();
+      }, 50); // wait for layout to settle
+    };
 
-  measureCard();
-  window.addEventListener("resize", handleResize);
-  return () => window.removeEventListener("resize", handleResize);
-}, [measureCard]);
-
- useEffect(() => {
-  setAnimated(false);        // disable animation during reset
-  setPosition(VISIBLE);      // reset to correct starting point
-
-  const id = requestAnimationFrame(() => {
-    setAnimated(true);       // re-enable animation smoothly
-  });
-
-  return () => cancelAnimationFrame(id);
-}, [VISIBLE]);
+    measureCard();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [measureCard]);
 
   useEffect(() => {
-  const handleResize = () => {
-    let newVisible; // ✅ use let
+    setAnimated(false); // disable animation during reset
+    setPosition(VISIBLE); // reset to correct starting point
 
-    if (window.innerWidth < 640) {
-      newVisible = 1;
-    } else if (window.innerWidth < 1024) {
-      newVisible = 2;
-    } else {
-      newVisible = 3;
-    }
-
-    setVISIBLE((prev) => {
-      if (prev !== newVisible) {
-        return newVisible;
-      }
-      return prev;
+    const id = requestAnimationFrame(() => {
+      setAnimated(true); // re-enable animation smoothly
     });
-  };
 
-  handleResize();
-  window.addEventListener("resize", handleResize);
-  return () => window.removeEventListener("resize", handleResize);
-}, []);
+    return () => cancelAnimationFrame(id);
+  }, [VISIBLE]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      let newVisible; // ✅ use let
+
+      if (window.innerWidth < 640) {
+        newVisible = 1;
+      } else if (window.innerWidth < 1024) {
+        newVisible = 2;
+      } else {
+        newVisible = 3;
+      }
+
+      setVISIBLE((prev) => {
+        if (prev !== newVisible) {
+          return newVisible;
+        }
+        return prev;
+      });
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
   // Compute translateX
   const getTranslate = (pos) => {
-  const cw = cardWidthRef.current;
+    const cw = cardWidthRef.current;
 
-  if (!cw) return 0; // prevent NaN / blank render
+    if (!cw) return 0; // prevent NaN / blank render
 
-  return -(pos * (cw + GAP));
-};
+    return -(pos * (cw + GAP));
+  };
 
   const move = (dir) => {
     if (isMoving) return;
@@ -187,12 +187,12 @@ export default function TestimonialCarousel() {
       return () => cancelAnimationFrame(id);
     }
   }, [animated]);
-  
 
   const translateX = getTranslate(position);
 
   return (
-    <section className="w-full bg-[white] py-20 px-5 flex flex-col items-center">{/**bg-[#f8f7f3] */}
+    <section className="w-full bg-[white] py-20 px-5 flex flex-col items-center">
+      {/**bg-[#f8f7f3] */}
       {/* Heading */}
       <p className="text-xs font-semibold tracking-[0.12em] uppercase text-gray-400 mb-3">
         OUR TEAM
@@ -209,15 +209,19 @@ export default function TestimonialCarousel() {
           style={{
             gap: `${GAP}px`,
             transform: `translateX(${translateX}px)`,
-            transition: animated ? "transform 0.55s cubic-bezier(0.65,0,0.35,1)" : "none",
+            transition: animated
+              ? "transform 0.55s cubic-bezier(0.65,0,0.35,1)"
+              : "none",
           }}
           onTransitionEnd={handleTransitionEnd}
         >
           {allCards.map((card, i) => (
             <div
               key={i}
-              style={{ flex: `0 0 calc((100% - ${GAP * (VISIBLE - 1)}px) / ${VISIBLE})` }}
-              className="h-[540px]"
+              style={{
+                flex: `0 0 calc((100% - ${GAP * (VISIBLE - 1)}px) / ${VISIBLE})`,
+              }}
+              className="h-[350px]"
             >
               <PhotoCard card={card} />
             </div>
@@ -233,7 +237,13 @@ export default function TestimonialCarousel() {
           className="w-13 h-13 w-[52px] h-[52px] rounded-full bg-[#f5b932] flex items-center justify-center shadow-lg shadow-yellow-300/30 hover:bg-[#e0a820] active:scale-95 transition-all duration-150"
         >
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-            <path d="M11 14L6 9L11 4" stroke="#1a1a2e" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+            <path
+              d="M11 14L6 9L11 4"
+              stroke="#1a1a2e"
+              strokeWidth="2.2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
           </svg>
         </button>
 
@@ -243,7 +253,13 @@ export default function TestimonialCarousel() {
           className="w-[52px] h-[52px] rounded-full bg-[#f5b932] flex items-center justify-center shadow-lg shadow-yellow-300/30 hover:bg-[#e0a820] active:scale-95 transition-all duration-150"
         >
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-            <path d="M7 4L12 9L7 14" stroke="#1a1a2e" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+            <path
+              d="M7 4L12 9L7 14"
+              stroke="#1a1a2e"
+              strokeWidth="2.2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
           </svg>
         </button>
       </div>

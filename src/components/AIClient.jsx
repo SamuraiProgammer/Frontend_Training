@@ -30,7 +30,7 @@ const AIClient = () => {
 
           {/* Heading */}
           <h1
-            className="mt-6 text-[40px] md:text-[36px] 
+            className="mt-6 text-[24px] md:text-[36px] 
             font-extrabold leading-tight text-gray-900"
           >
             AI Client Simulations for{" "}

@@ -1,6 +1,5 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
 
 // ─── Card Data ────────────────────────────────────────────────────────────────
 
@@ -23,15 +22,15 @@ const undergraduateCards = [
       "Explore the intersection of psychology and the workplace. Learn assessment tools, HR practices, and behavioural strategies under the guidance of seasoned organizational psychologists.",
     hours: "60 | 90 | 120 | 240 Hours",
   },
-  {
-    id: "ug-3",
-    badge: "Supervision & Practical Based",
-    heading: "Supervision and Practical",
-    subheading: "Professional Mentorship and Supervision Programme",
-    description:
-      "Gain hands-on experience in psychological assessments, case history taking, and therapeutic techniques. Develop practical skills under expert supervision to kickstart your career in clinical psychology.",
-    hours: "60 | 90 | 120 | 240 Hours",
-  },
+  // {
+  //   id: "ug-3",
+  //   badge: "Supervision & Practical Based",
+  //   heading: "Supervision and Practical",
+  //   subheading: "Professional Mentorship and Supervision Programme",
+  //   description:
+  //     "Gain hands-on experience in psychological assessments, case history taking, and therapeutic techniques. Develop practical skills under expert supervision to kickstart your career in clinical psychology.",
+  //   hours: "60 | 90 | 120 | 240 Hours",
+  // },
 ];
 
 const postgraduateCards = [
@@ -83,49 +82,58 @@ const postgraduateCards = [
 ];
 
 const earlyCareerCards = [
-  {
-    id: "ec-1",
-    badge: "Career Development",
-    heading: "Professional Mentorship",
-    subheading: "Clinical & Counselling Psychology",
-    description:
-      "Transition from student to practitioner with confidence. Receive one-on-one mentorship, case discussion support, and professional guidance from experienced clinicians.",
-    hours: "60 | 90 | 120 | 240 Hours",
-  },
-  {
-    id: "ec-2",
-    badge: "Skills Enhancement",
-    heading: "Practice Building Workshop",
-    subheading: "Private Practice & Entrepreneurship",
-    description:
-      "Learn how to set up and grow your private psychology practice. Covers ethics, documentation, marketing, and financial management for early career professionals.",
-    hours: "30 | 60 Hours",
-  },
-  {
-    id: "ec-3",
-    badge: "Supervision Based",
-    heading: "Supervised Case Consultation",
-    subheading: "Organizational Psychology",
-    description:
-      "Receive structured supervision for your early professional casework in organizational contexts. Develop confidence in assessments, coaching, and workplace interventions.",
-    hours: "60 | 90 | 120 Hours",
-  },
+  // {
+  //   id: "ec-1",
+  //   badge: "Career Development",
+  //   heading: "Professional Mentorship",
+  //   subheading: "Clinical & Counselling Psychology",
+  //   description:
+  //     "Transition from student to practitioner with confidence. Receive one-on-one mentorship, case discussion support, and professional guidance from experienced clinicians.",
+  //   hours: "60 | 90 | 120 | 240 Hours",
+  // },
+  // {
+  //   id: "ec-2",
+  //   badge: "Skills Enhancement",
+  //   heading: "Practice Building Workshop",
+  //   subheading: "Private Practice & Entrepreneurship",
+  //   description:
+  //     "Learn how to set up and grow your private psychology practice. Covers ethics, documentation, marketing, and financial management for early career professionals.",
+  //   hours: "30 | 60 Hours",
+  // },
+  // {
+  //   id: "ec-3",
+  //   badge: "Supervision Based",
+  //   heading: "Supervised Case Consultation",
+  //   subheading: "Organizational Psychology",
+  //   description:
+  //     "Receive structured supervision for your early professional casework in organizational contexts. Develop confidence in assessments, coaching, and workplace interventions.",
+  //   hours: "60 | 90 | 120 Hours",
+  // },
+  // {
+  //   id: "ec-4",
+  //   badge: "Training & Mentorship",
+  //   heading: "Mentorship and Training",
+  //   subheading: "Child & Adolescent Therapy",
+  //   description:
+  //     "Enhance your skills in child psychology practice with targeted mentorship from specialists. Work through real case scenarios with guided supervision and feedback.",
+  //   hours: "60 | 90 | 120 | 240 Hours",
+  // },
   {
     id: "ec-4",
-    badge: "Training & Mentorship",
-    heading: "Mentorship and Training",
-    subheading: "Child & Adolescent Therapy",
+    badge: "Supervision & Practical Based",
+    heading: "Professional Mentorship and Supervision Programme",
+    subheading: "Professional Supervision Programme",
     description:
-      "Enhance your skills in child psychology practice with targeted mentorship from specialists. Work through real case scenarios with guided supervision and feedback.",
+      "Designed for early career professionals who need supervised hours for licensure or certification. Fulfil your requirements with globally accepted, certified supervision.",
     hours: "60 | 90 | 120 | 240 Hours",
   },
   {
     id: "ec-5",
-    badge: "Supervision & Practical Based",
-    heading: "Supervision and Practical",
-    subheading: "Professional Supervision Programme",
+    badge: "Mentorship & Training",
+    heading: "Bussiness Side of Therapy",
+    subheading: "Child & Adolescent Therapy",
     description:
-      "Designed for early career professionals who need supervised hours for licensure or certification. Fulfil your requirements with globally accepted, certified supervision.",
+      "Enhance your skills in child psychology practice with targeted mentorship from specialists. Work through real case scenarios with guided supervision and feedback.",
     hours: "60 | 90 | 120 | 240 Hours",
   },
 ];
@@ -159,10 +167,7 @@ function ProgramCard({ card }) {
         >
           Explore
         </button>
-        <button
-          className="btn-register"
-          onClick={() => navigate(`/register`)}
-        >
+        <button className="btn-register" onClick={() => navigate(`/register`)}>
           Register
         </button>
       </div>
@@ -196,11 +201,13 @@ export default function ExplorePage() {
   const pgRef = useRef(null);
   const ecRef = useRef(null);
   const topRef = useRef(null);
+  const [activeTab, setActiveTab] = useState("all");
 
-  const scrollTo = (ref) => {
+  const scrollTo = (ref, tabName) => {
     if (ref?.current) {
       ref.current.scrollIntoView({ behavior: "smooth", block: "start" });
     }
+    setActiveTab(tabName);
   };
 
   return (
@@ -284,9 +291,9 @@ export default function ExplorePage() {
         }
 
         .nav-btn.active {
-          background: #f0c040;
+          background: #FAAD14;
           color: #1a1a2e;
-          border-color: #f0c040;
+          border-color: #FAAD14;
           box-shadow: 0 4px 14px rgba(240, 192, 64, 0.4);
         }
 
@@ -487,16 +494,31 @@ export default function ExplorePage() {
 
         {/* Sticky Nav */}
         <div className="nav-tabs">
-          <button className="nav-btn" onClick={() => scrollTo(topRef)}>
+          <button
+            className={`nav-btn ${activeTab === "all" ? "active" : ""}`}
+            onClick={() => scrollTo(topRef, "all")}
+          >
             All
           </button>
-          <button className="nav-btn" onClick={() => scrollTo(ugRef)}>
+
+          <button
+            className={`nav-btn ${activeTab === "ug" ? "active" : ""}`}
+            onClick={() => scrollTo(ugRef, "ug")}
+          >
             Undergraduate
           </button>
-          <button className="nav-btn" onClick={() => scrollTo(pgRef)}>
+
+          <button
+            className={`nav-btn ${activeTab === "pg" ? "active" : ""}`}
+            onClick={() => scrollTo(pgRef, "pg")}
+          >
             Postgraduate
           </button>
-          <button className="nav-btn" onClick={() => scrollTo(ecRef)}>
+
+          <button
+            className={`nav-btn ${activeTab === "ec" ? "active" : ""}`}
+            onClick={() => scrollTo(ecRef, "ec")}
+          >
             Early Career Professional
           </button>
         </div>
