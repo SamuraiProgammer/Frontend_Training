@@ -1,142 +1,19 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-// ─── Card Data ────────────────────────────────────────────────────────────────
+// ─── Helper: map API response item → card shape ───────────────────────────────
 
-const undergraduateCards = [
-  {
-    id: "6937bf9bb48964fa977992aa",
-    badge: "Supervision & Training Based",
-    heading: "Mentorship and Training",
-    subheading: "Clinical & Counselling Psychology",
-    description:
-      "Gain hands-on experience in psychological assessments, case history taking, and therapeutic techniques. Develop practical skills under expert supervision to kickstart your career in clinical psychology.",
-    hours: "60 | 90 | 120 | 240 Hours",
-  },
-  {
-    id: "ug-2",
-    badge: "Supervision & Training Based",
-    heading: "Mentorship and Training",
-    subheading: "Organizational Psychology",
-    description:
-      "Explore the intersection of psychology and the workplace. Learn assessment tools, HR practices, and behavioural strategies under the guidance of seasoned organizational psychologists.",
-    hours: "60 | 90 | 120 | 240 Hours",
-  },
-  // {
-  //   id: "ug-3",
-  //   badge: "Supervision & Practical Based",
-  //   heading: "Supervision and Practical",
-  //   subheading: "Professional Mentorship and Supervision Programme",
-  //   description:
-  //     "Gain hands-on experience in psychological assessments, case history taking, and therapeutic techniques. Develop practical skills under expert supervision to kickstart your career in clinical psychology.",
-  //   hours: "60 | 90 | 120 | 240 Hours",
-  // },
-];
-
-const postgraduateCards = [
-  {
-    id: "pg-1",
-    badge: "Advanced Clinical Training",
-    heading: "Advanced Clinical Practice",
-    subheading: "Clinical & Counselling Psychology",
-    description:
-      "Deepen your clinical expertise with advanced assessment techniques, evidence-based therapies, and complex case formulation. Supervised practice in real clinical environments.",
-    hours: "120 | 180 | 240 Hours",
-  },
-  {
-    id: "pg-2",
-    badge: "Research & Practice",
-    heading: "Research and Applied Psychology",
-    subheading: "Organizational & Industrial Psychology",
-    description:
-      "Bridge research and practice in organizational settings. Master psychometric tools, leadership assessments, and strategic HR interventions under expert mentorship.",
-    hours: "120 | 180 | 240 Hours",
-  },
-  {
-    id: "pg-3",
-    badge: "Supervision Based",
-    heading: "Supervised Clinical Internship",
-    subheading: "Neuropsychology & Rehabilitation",
-    description:
-      "Work alongside neuropsychologists in clinical settings to assess and rehabilitate patients. Gain practical skills in cognitive assessments and intervention planning.",
-    hours: "120 | 240 Hours",
-  },
-  {
-    id: "pg-4",
-    badge: "Training & Mentorship",
-    heading: "Mentorship and Training",
-    subheading: "Child & Adolescent Psychology",
-    description:
-      "Specialize in working with children and adolescents. Learn developmental assessments, play therapy techniques, and school-based interventions under qualified supervision.",
-    hours: "60 | 90 | 120 | 240 Hours",
-  },
-  {
-    id: "pg-5",
-    badge: "Supervision & Practical Based",
-    heading: "Supervision and Practical",
-    subheading: "Professional Supervision Programme",
-    description:
-      "An intensive mentorship programme designed for postgraduate students seeking structured supervision hours. Fulfil your supervision requirements with certified professionals.",
-    hours: "60 | 90 | 120 | 240 Hours",
-  },
-];
-
-const earlyCareerCards = [
-  // {
-  //   id: "ec-1",
-  //   badge: "Career Development",
-  //   heading: "Professional Mentorship",
-  //   subheading: "Clinical & Counselling Psychology",
-  //   description:
-  //     "Transition from student to practitioner with confidence. Receive one-on-one mentorship, case discussion support, and professional guidance from experienced clinicians.",
-  //   hours: "60 | 90 | 120 | 240 Hours",
-  // },
-  // {
-  //   id: "ec-2",
-  //   badge: "Skills Enhancement",
-  //   heading: "Practice Building Workshop",
-  //   subheading: "Private Practice & Entrepreneurship",
-  //   description:
-  //     "Learn how to set up and grow your private psychology practice. Covers ethics, documentation, marketing, and financial management for early career professionals.",
-  //   hours: "30 | 60 Hours",
-  // },
-  // {
-  //   id: "ec-3",
-  //   badge: "Supervision Based",
-  //   heading: "Supervised Case Consultation",
-  //   subheading: "Organizational Psychology",
-  //   description:
-  //     "Receive structured supervision for your early professional casework in organizational contexts. Develop confidence in assessments, coaching, and workplace interventions.",
-  //   hours: "60 | 90 | 120 Hours",
-  // },
-  // {
-  //   id: "ec-4",
-  //   badge: "Training & Mentorship",
-  //   heading: "Mentorship and Training",
-  //   subheading: "Child & Adolescent Therapy",
-  //   description:
-  //     "Enhance your skills in child psychology practice with targeted mentorship from specialists. Work through real case scenarios with guided supervision and feedback.",
-  //   hours: "60 | 90 | 120 | 240 Hours",
-  // },
-  {
-    id: "ec-4",
-    badge: "Supervision & Practical Based",
-    heading: "Professional Mentorship and Supervision Programme",
-    subheading: "Professional Supervision Programme",
-    description:
-      "Designed for early career professionals who need supervised hours for licensure or certification. Fulfil your requirements with globally accepted, certified supervision.",
-    hours: "60 | 90 | 120 | 240 Hours",
-  },
-  {
-    id: "ec-5",
-    badge: "Mentorship & Training",
-    heading: "Bussiness Side of Therapy",
-    subheading: "Child & Adolescent Therapy",
-    description:
-      "Enhance your skills in child psychology practice with targeted mentorship from specialists. Work through real case scenarios with guided supervision and feedback.",
-    hours: "60 | 90 | 120 | 240 Hours",
-  },
-];
+function mapCourseToCard(item) {
+  return {
+    id: item._id,
+    badge: item.badge,
+    heading: item.heading,
+    subheading: item.subheading,
+    description: item.description,
+    hours: item.hours.join(" | ")+"  Hours",
+    benefits: item.benefits,
+  };
+}
 
 // ─── Card Component ───────────────────────────────────────────────────────────
 
@@ -151,14 +28,20 @@ function ProgramCard({ card }) {
       <p className="card-description">{card.description}</p>
       <div className="card-hours">{card.hours}</div>
       <div className="card-meta">
-        <div className="card-meta-item">
-          <span className="meta-icon">🎓</span>
-          <span>With Completion Certification</span>
-        </div>
-        <div className="card-meta-item">
-          <span className="meta-icon">🌐</span>
-          <span>Globally Accepted Program</span>
-        </div>
+        {card.benefits.map((benefit) => (
+          <div className="card-meta-item" key={benefit._id}>
+            {benefit.imageurl ? (
+              <img
+                src={benefit.imageurl}
+                alt=""
+                style={{ width: "1rem", height: "1rem", objectFit: "contain" }}
+              />
+            ) : (
+              <span className="meta-icon">🎓</span>
+            )}
+            <span>{benefit.text}</span>
+          </div>
+        ))}
       </div>
       <div className="card-actions">
         <button
@@ -167,7 +50,10 @@ function ProgramCard({ card }) {
         >
           Explore
         </button>
-        <button className="btn-register" onClick={() => navigate(`/register`,{ state: { heading: card.heading } })}>
+        <button
+          className="btn-register"
+          onClick={() => navigate(`/register`, { state: { heading: card.heading } })}
+        >
           Register
         </button>
       </div>
@@ -202,6 +88,36 @@ export default function ExplorePage() {
   const ecRef = useRef(null);
   const topRef = useRef(null);
   const [activeTab, setActiveTab] = useState("all");
+
+  const [ugCards, setUgCards] = useState([]);
+  const [pgCards, setPgCards] = useState([]);
+  const [ecCards, setEcCards] = useState([]);
+
+  useEffect(() => {
+    const fetchAll = async () => {
+      try {
+        const [ugRes, pgRes, ecRes] = await Promise.all([
+          fetch("http://localhost:5000/api/course-detail/ug"),
+          fetch("http://localhost:5000/api/course-detail/pg"),
+          fetch("http://localhost:5000/api/course-detail/early-career"),
+        ]);
+
+        const [ugData, pgData, ecData] = await Promise.all([
+          ugRes.json(),
+          pgRes.json(),
+          ecRes.json(),
+        ]);
+
+        if (ugData.success) setUgCards(ugData.data.map(mapCourseToCard));
+        if (pgData.success) setPgCards(pgData.data.map(mapCourseToCard));
+        if (ecData.success) setEcCards(ecData.data.map(mapCourseToCard));
+      } catch (err) {
+        console.error("Failed to fetch course data:", err);
+      }
+    };
+
+    fetchAll();
+  }, []);
 
   const scrollTo = (ref, tabName) => {
     if (ref?.current) {
@@ -355,7 +271,6 @@ export default function ExplorePage() {
           background: #fff;
           border-radius: 20px;
           padding: 24px 20px 20px;
-          // border: 1px solid #ede9f8;
           display: flex;
           flex-direction: column;
           gap: 12px;
@@ -500,21 +415,18 @@ export default function ExplorePage() {
           >
             All
           </button>
-
           <button
             className={`nav-btn ${activeTab === "ug" ? "active" : ""}`}
             onClick={() => scrollTo(ugRef, "ug")}
           >
             Undergraduate
           </button>
-
           <button
             className={`nav-btn ${activeTab === "pg" ? "active" : ""}`}
             onClick={() => scrollTo(pgRef, "pg")}
           >
             Postgraduate
           </button>
-
           <button
             className={`nav-btn ${activeTab === "ec" ? "active" : ""}`}
             onClick={() => scrollTo(ecRef, "ec")}
@@ -524,25 +436,13 @@ export default function ExplorePage() {
         </div>
 
         {/* Undergraduate */}
-        <Section
-          sectionRef={ugRef}
-          title="Undergraduate"
-          cards={undergraduateCards}
-        />
+        <Section sectionRef={ugRef} title="Undergraduate" cards={ugCards} />
 
         {/* Postgraduate */}
-        <Section
-          sectionRef={pgRef}
-          title="Postgraduate"
-          cards={postgraduateCards}
-        />
+        <Section sectionRef={pgRef} title="Postgraduate" cards={pgCards} />
 
         {/* Early Career Professional */}
-        <Section
-          sectionRef={ecRef}
-          title="Early Career Professional"
-          cards={earlyCareerCards}
-        />
+        <Section sectionRef={ecRef} title="Early Career Professional" cards={ecCards} />
       </div>
     </>
   );

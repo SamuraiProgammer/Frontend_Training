@@ -303,6 +303,8 @@ const dropdownItemStyle = {
 // ─── Main Page ────────────────────────────────────────────────────────────────
 
 export default function RegisterPage({heading="2 Hour Preview of the Training @ Just ₹500"}) {
+  //const whatsappNumber = String(import.meta.env.WHATSAPP_NUMBER);
+  const whatsappNumber = "918448154111"
   const navigate = useNavigate();
   const location = useLocation();
   const apiUrl = import.meta.env.VITE_API_URL;
@@ -314,7 +316,7 @@ export default function RegisterPage({heading="2 Hour Preview of the Training @ 
     countryCode: COUNTRY_CODES[0],
     phone: "",
     college: "",
-    course: "",
+    course: ""
   });
 
   const [errors, setErrors] = useState({});
@@ -323,6 +325,15 @@ export default function RegisterPage({heading="2 Hour Preview of the Training @ 
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const codeRef = useRef(null);
+  const whatsappMessage = `Hi, I have registered for your program: ${resolvedHeading}.
+
+Full Name: ${form.name}
+Email: ${form.email}
+Phone: ${form.countryCode.code}${form.phone}
+College: ${form.college}
+Current Academic Program: ${form.course}`;
+
+  const whatsappHref = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
 
   // Close country code dropdown on outside click
   useEffect(() => {
@@ -379,6 +390,7 @@ export default function RegisterPage({heading="2 Hour Preview of the Training @ 
         phone_no: `${form.countryCode.code}${form.phone}`,
         college: form.college.trim(),
         course: form.course.trim(),
+        registeredForProgram: resolvedHeading
       };
 
       const response = await axios.post(`${apiUrl}/auth/register`, payload);
@@ -476,6 +488,36 @@ export default function RegisterPage({heading="2 Hour Preview of the Training @ 
           >
             ← Back to Courses
           </button>
+          <p
+            style={{
+              marginTop: "24px",
+              marginBottom: "12px",
+              color: "#666",
+              fontSize: "0.9rem",
+              fontWeight: 700,
+            }}
+          >
+            Have some queries?
+          </p>
+          <a
+            href={whatsappHref}
+            target="_blank"
+            rel="noreferrer"
+            style={{
+              display: "inline-block",
+              background: "#25D366",
+              color: "#fff",
+              textDecoration: "none",
+              borderRadius: "50px",
+              padding: "13px 36px",
+              fontWeight: 700,
+              fontSize: "0.88rem",
+              letterSpacing: "0.3px",
+              transition: "all 0.2s ease",
+            }}
+          >
+            Reach out to us
+          </a>
         </div>
       </div>
     );
@@ -765,7 +807,7 @@ export default function RegisterPage({heading="2 Hour Preview of the Training @ 
 
             {/* Course */}
             <AutocompleteField
-              label="Course Name"
+              label="Current Academic Pogram"
               placeholder="Search for a course..."
               options={COURSES}
               value={form.course}
