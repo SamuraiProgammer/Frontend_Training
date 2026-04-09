@@ -93,13 +93,15 @@ export default function ExplorePage() {
   const [pgCards, setPgCards] = useState([]);
   const [ecCards, setEcCards] = useState([]);
 
+  const apiUrl = import.meta.env.VITE_API_URL;
+
   useEffect(() => {
     const fetchAll = async () => {
       try {
         const [ugRes, pgRes, ecRes] = await Promise.all([
-          fetch("http://localhost:5000/api/course-detail/ug"),
-          fetch("http://localhost:5000/api/course-detail/pg"),
-          fetch("http://localhost:5000/api/course-detail/early-career"),
+          fetch(`${apiUrl}/course-detail/ug`),
+          fetch(`${apiUrl}/course-detail/pg`),
+          fetch(`${apiUrl}/course-detail/early-career`),
         ]);
 
         const [ugData, pgData, ecData] = await Promise.all([

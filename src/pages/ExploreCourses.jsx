@@ -224,6 +224,8 @@ const ExploreCourses = () => {
   //const courseData = coursedata.filter((data) => data._id===id)
   //console.log(courseData[0])
 
+  const apiUrl = import.meta.env.VITE_API_URL;
+
   useEffect(() => {
     if (!id) return
     const fetchData = async () => {
@@ -231,7 +233,7 @@ const ExploreCourses = () => {
 
       try {
         const response = await fetch(
-          `http://localhost:5000/api/course-detail/${id}`
+          `${apiUrl}/course-detail/${id}`
         )
         const data = await response.json()
         const courseInfo = data?.data ?? data
