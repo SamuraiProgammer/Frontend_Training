@@ -48,7 +48,7 @@ const ProgramCard = ({
           bg-[#faad14]
           hover:scale-105 hover:shadow-md 
           transition-all duration-300 cursor-pointer"
-          onClick={()=> navigate("/explore")}
+          onClick={()=> navigate(`/explore/${title}`)}
         >
           Explore
         </button>

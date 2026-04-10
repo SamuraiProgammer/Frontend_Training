@@ -26,31 +26,51 @@ const PromotionalBanner = () => {
     "Get a hands-on experience of our premium training program. Learn real-world skills before committing fully.";
 
   return (
-    <div className="flex w-full items-center justify-center px-6 py-10">
-      <div className="flex w-full max-w-7xl flex-col items-center justify-between gap-6 rounded-[2rem] border border-white/10 bg-[#e5fae7] p-8 shadow-[8px_8px_0px_#9be8a8] md:flex-row md:p-12">
-        <div className="max-w-xl text-[#123333]">
-          <p className="mb-2 text-sm uppercase tracking-widest text-[#023d56]">
-            Limited Time Offer
-          </p>
+    <div className="flex w-full items-center justify-center px-6 py-4">
+  <div className="relative flex w-full max-w-7xl flex-col items-center justify-between gap-8 overflow-hidden rounded-3xl border border-white/20 bg-gradient-to-br from-[#ecfdf5] via-[#f0fdf4] to-[#dcfce7] p-8 shadow-[0_10px_10px_-10px_rgba(0,0,0,0.15)] backdrop-blur-xl md:flex-row md:p-12">
 
-          <h2 className="mb-4 text-2xl font-bold leading-snug md:text-4xl">
-            {heading}
-            <span className="mt-1 block text-[#faad14]">Just ₹{price}</span>
-          </h2>
+    {/* subtle glow */}
+    <div className="absolute -top-20 -right-20 h-72 w-72 rounded-full bg-[#86efac]/30 blur-3xl"></div>
 
-          <p className="text-sm text-gray-600 md:text-base">{description}</p>
-        </div>
+    <div className="relative max-w-xl text-[#0f2f2f]">
+      <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-[#0284c7]">
+        Limited Time Offer
+      </p>
 
-        <div className="flex-shrink-0">
-          <button
-            className="cursor-pointer rounded-lg bg-[#faad14] px-8 py-3 font-semibold text-[#000000] transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/30"
-            onClick={() => navigateToFeaturedOfferRegistration({ navigate })}
-          >
-            {offer?.buttonText || "Register Now"}
-          </button>
-        </div>
-      </div>
+      <h2 className="mb-5 text-3xl font-bold leading-tight md:text-5xl">
+        {heading}
+        <span className="mt-2 block text-2xl font-semibold text-[#f59e0b] md:text-3xl">
+          Just ₹{price}
+        </span>
+      </h2>
+
+      <p className="text-sm leading-relaxed text-gray-600 md:text-base">
+        {description}
+      </p>
     </div>
+
+    <div className="relative flex flex-col gap-4 md:flex-row">
+      <button
+        className="group relative overflow-hidden rounded-xl cursor-pointer bg-gradient-to-r from-[#f59e0b] to-[#fbbf24] px-8 py-3 font-semibold text-black shadow-md transition-all duration-300 hover:scale-105 hover:shadow-xl"
+        onClick={() =>
+          navigateToFeaturedOfferRegistration({ navigate })
+        }
+      >
+        <span className="relative z-10">
+          {offer?.buttonText || "Register Now"}
+        </span>
+        <span className="absolute inset-0 bg-white/20 opacity-0 transition group-hover:opacity-100"></span>
+      </button>
+
+      <button
+        className="rounded-xl border cursor-pointer border-gray-300 bg-white/70 px-8 py-3 font-semibold text-gray-800 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white hover:shadow-lg"
+        onClick={() => navigate(`/offers/${offer.slug}`)}
+      >
+        Explore
+      </button>
+    </div>
+  </div>
+</div>
   );
 };
 

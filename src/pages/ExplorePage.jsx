@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5002/api";
 
@@ -154,6 +154,7 @@ export default function ExplorePage() {
   const [pgCards, setPgCards] = useState([]);
   const [ecCards, setEcCards] = useState([]);
   const [offers, setOffers] = useState([]);
+  const {titleData} = useParams();
 
   useEffect(() => {
     const fetchAll = async () => {
@@ -192,12 +193,13 @@ export default function ExplorePage() {
       <div className="mx-auto max-w-7xl px-4 pb-16">
         <div className="py-12 text-center">
           <h1 className="text-4xl font-bold text-gray-900 md:text-5xl">
-            Supervision & <span className="text-[#FAAD14]">Mentorship</span>
+            {/* Supervision & <span className="text-[#FAAD14]">Mentorship</span> */}
+            {titleData}
           </h1>
-          <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-gray-600 md:text-base">
+          {/* <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-gray-600 md:text-base">
             Regular programmes ke saath live preview offers bhi available hain. Admin jo active
             karega, wahi yahan dynamic tarike se show hoga.
-          </p>
+          </p> */}
         </div>
 
         {offers.length > 0 && (
