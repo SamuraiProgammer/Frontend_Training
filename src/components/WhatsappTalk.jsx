@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FaWhatsapp } from "react-icons/fa";
 
-export default function WhatsappTalk({ phoneNumber, message, tooltip = "Chat with us on WhatsApp", position="fixed bottom-[50%] right-1 z-50", useBy="" }) {
+export default function WhatsappTalk({ phoneNumber, message, tooltip = "Chat with us on WhatsApp", position="fixed bottom-[50%] right-0 z-50", useBy="" }) {
   const [hovered, setHovered] = useState(false);
   const encodedMessage = encodeURIComponent(message || "Hello!");
   const whatsappUrl = `https://api.whatsapp.com/send/?phone=${phoneNumber}&text=${encodedMessage}&type=phone_number&app_absent=0`;
@@ -31,13 +31,13 @@ export default function WhatsappTalk({ phoneNumber, message, tooltip = "Chat wit
         className="
           relative
           bg-green-500 hover:bg-green-600
-          text-white font-bold
-          p-4 rounded-full
+          text-white
+          p-2 rounded-tl-md rounded-bl-md
           shadow-lg flex items-center justify-center
           transition-all
         "
       >
-        <FaWhatsapp size={20} />
+        <FaWhatsapp size={20} />Chat
       </a>
     </div>
   );

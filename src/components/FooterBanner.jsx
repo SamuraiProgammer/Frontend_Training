@@ -1,32 +1,40 @@
-import React from "react";
-import {useNavigate} from "react-router-dom"
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { fetchFeaturedOffer, navigateToFeaturedOfferRegistration } from "../utils/featuredOffer";
 
 const FooterBanner = () => {
   const navigate = useNavigate();
+  const [offer, setOffer] = useState(null);
+
+  useEffect(() => {
+    const loadOffer = async () => {
+      try {
+        const featured = await fetchFeaturedOffer();
+        setOffer(featured);
+      } catch (error) {
+        console.error("Failed to load footer offer", error);
+      }
+    };
+
+    loadOffer();
+  }, []);
+
   return (
-    <div className="w-full sticky bottom-4 z-40 py-5 px-4">
-      
-      <div className="max-w-5xl mx-auto rounded-2xl border border-gray-200 
-        bg-white/80 backdrop-blur-xl shadow-lg px-6 py-4 
-        flex flex-col sm:flex-row items-center justify-between gap-4">
-
-        {/* Text */}
+    <div className="sticky bottom-4 z-40 w-full px-4 py-5">
+      <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-4 rounded-2xl border border-gray-200 bg-white/80 px-6 py-4 shadow-lg backdrop-blur-xl sm:flex-row">
         <div className="text-center sm:text-left">
-
-          <h2 className="text-sm sm:text-lg md:text-xl font-bold text-gray-900">
-            Explore Before You Enroll{" "}
-            <span className="text-[#faad14]">
-              @ ₹500
-            </span>
+          <h2 className="text-sm font-bold text-gray-900 sm:text-lg md:text-xl">
+            {offer?.cardTitle || "Explore Before You Enroll"}{" "}
+            <span className="text-[#faad14]">@ ₹{offer?.price || 500}</span>
           </h2>
         </div>
 
-        {/* CTA */}
         <div className="flex gap-3">
-          <button className="px-5 py-2 rounded-lg text-sm font-semibold text-black 
-            bg-[#faad14] cursor-pointer
-            hover:scale-105 hover:shadow-md transition-all duration-300" onClick={() => navigate("/register", { state: { heading: "Explore Before You Enroll @ 500" } })}>
-            Register
+          <button
+            className="cursor-pointer rounded-lg bg-[#faad14] px-5 py-2 text-sm font-semibold text-black transition-all duration-300 hover:scale-105 hover:shadow-md"
+            onClick={() => navigateToFeaturedOfferRegistration({ navigate })}
+          >
+            {offer?.buttonText || "Register"}
           </button>
         </div>
       </div>

@@ -1,58 +1,120 @@
-import { useRef, useState, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-// ─── Helper: map API response item → card shape ───────────────────────────────
+const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5002/api";
 
-function mapCourseToCard(item) {
-  return {
-    id: item._id,
-    badge: item.badge,
-    heading: item.heading,
-    subheading: item.subheading,
-    description: item.description,
-    hours: item.hours.join(" | ")+"  Hours",
-    benefits: item.benefits,
-  };
-}
+const mapCourseToCard = (item) => ({
+  id: item._id,
+  badge: item.badge,
+  heading: item.heading,
+  subheading: item.subheading,
+  description: item.description,
+  hours: item.hours.join(" | ") + " Hours",
+  benefits: item.benefits,
+});
 
-// ─── Card Component ───────────────────────────────────────────────────────────
-
-function ProgramCard({ card }) {
+function PreviewOfferCard({ offer }) {
   const navigate = useNavigate();
 
   return (
-    <div className="program-card">
-      <div className="card-badge">{card.badge}</div>
-      <h3 className="card-heading">{card.heading}</h3>
-      <p className="card-subheading">{card.subheading}</p>
-      <p className="card-description">{card.description}</p>
-      <div className="card-hours">{card.hours}</div>
-      <div className="card-meta">
+    <div className="rounded-[28px] bg-[#111111] p-6 text-white shadow-xl">
+      <div className="flex h-full flex-col justify-between gap-5">
+        <div>
+          <div className="inline-flex rounded-full bg-white/10 px-4 py-2 text-[11px] font-bold uppercase tracking-[0.3em] text-[#FAAD14]">
+            {offer.badge}
+          </div>
+          <h3 className="mt-5 text-2xl font-bold leading-tight">{offer.cardTitle}</h3>
+          <p className="mt-2 text-sm font-semibold text-[#FAAD14]">{offer.cardSubtitle}</p>
+          <p className="mt-4 text-sm leading-7 text-white/75">{offer.cardDescription}</p>
+        </div>
+
+        <div>
+          <div className="rounded-3xl bg-white/5 p-4">
+            <div className="text-xs uppercase tracking-[0.2em] text-white/50">Starting at</div>
+            <div className="mt-2 text-3xl font-bold">₹{offer.price}</div>
+            <div className="mt-2 text-xs uppercase tracking-[0.2em] text-white/50">
+              {offer.batches?.length || 0} active batches
+            </div>
+          </div>
+
+          {offer.highlights?.length > 0 && (
+            <div className="mt-4 flex flex-wrap gap-2">
+              {offer.highlights.slice(0, 3).map((item, index) => (
+                <span
+                  key={`${item}-${index}`}
+                  className="rounded-full bg-white/10 px-3 py-1 text-xs text-white/80"
+                >
+                  {item}
+                </span>
+              ))}
+            </div>
+          )}
+
+          <div className="mt-5 flex gap-3">
+            <button
+              className="flex-1 rounded-2xl border border-[#FAAD14] px-4 py-3 text-sm font-bold text-white transition hover:bg-[#FAAD14] hover:text-black"
+              onClick={() => navigate(`/offers/${offer.slug}`)}
+            >
+              Explore
+            </button>
+            <button
+              className="flex-1 rounded-2xl bg-[#FAAD14] px-4 py-3 text-sm font-bold text-black transition hover:opacity-90"
+              onClick={() => navigate(`/offers/${offer.slug}/register`)}
+            >
+              {offer.buttonText || "Register"}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ProgramCard({ card, featuredOfferSlug }) {
+  const navigate = useNavigate();
+
+  const handleRegister = () => {
+    if (featuredOfferSlug) {
+      navigate(`/offers/${featuredOfferSlug}/register`, {
+        state: { sourceCourseTitle: card.heading },
+      });
+      return;
+    }
+
+    navigate(`/register`, { state: { heading: card.heading } });
+  };
+
+  return (
+    <div className="rounded-[24px] bg-white p-5 shadow-md transition hover:-translate-y-1 hover:shadow-xl">
+      <div className="inline-flex rounded-full bg-black px-4 py-2 text-[11px] font-bold uppercase tracking-[0.2em] text-white">
+        {card.badge}
+      </div>
+      <h3 className="mt-4 text-xl font-bold leading-tight text-gray-900">{card.heading}</h3>
+      <p className="mt-2 text-sm font-semibold text-[#FAAD14]">{card.subheading}</p>
+      <p className="mt-3 text-sm leading-6 text-gray-600">{card.description}</p>
+
+      <div className="mt-4 border-y py-3 text-sm font-bold text-gray-900">{card.hours}</div>
+
+      <div className="mt-4 space-y-2">
         {card.benefits.map((benefit) => (
-          <div className="card-meta-item" key={benefit._id}>
-            {benefit.imageurl ? (
-              <img
-                src={benefit.imageurl}
-                alt=""
-                style={{ width: "1rem", height: "1rem", objectFit: "contain" }}
-              />
-            ) : (
-              <span className="meta-icon">🎓</span>
-            )}
+          <div key={benefit._id} className="flex items-center gap-3 text-sm font-medium text-gray-600">
+            <span className="text-base">🎓</span>
             <span>{benefit.text}</span>
           </div>
         ))}
       </div>
-      <div className="card-actions">
+
+      <div className="mt-5 flex gap-3">
         <button
-          className="btn-explore"
+          className="flex-1 rounded-2xl border border-[#FAAD14] px-4 py-3 text-sm font-bold text-black transition hover:bg-[#FAAD14]"
           onClick={() => navigate(`/explore-course/${card.id}`)}
         >
           Explore
         </button>
         <button
-          className="btn-register"
-          onClick={() => navigate(`/register`, { state: { heading: card.heading } })}
+          className="flex-1 rounded-2xl bg-[#FAAD14] px-4 py-3 text-sm font-bold text-black transition hover:opacity-90"
+          onClick={handleRegister}
         >
           Register
         </button>
@@ -61,26 +123,26 @@ function ProgramCard({ card }) {
   );
 }
 
-// ─── Section Component ────────────────────────────────────────────────────────
-
-function Section({ sectionRef, title, cards }) {
+function Section({ sectionRef, title, cards, featuredOfferSlug }) {
   return (
-    <section ref={sectionRef} className="section">
-      <div className="section-header">
-        <h2 className="section-title">{title}</h2>
-        <span className="section-arrow">↗</span>
-        <div className="section-line" />
+    <section ref={sectionRef} className="mb-16 scroll-mt-28">
+      <div className="mb-8 flex items-center gap-4">
+        <h2 className="whitespace-nowrap text-2xl font-bold text-gray-900">{title}</h2>
+        <span className="text-xl font-bold text-[#FAAD14]">↗</span>
+        <div className="h-[2px] flex-1 rounded bg-gradient-to-r from-[#5b4fcf33] to-transparent" />
       </div>
-      <div className="cards-grid">
+      <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
         {cards.map((card) => (
-          <ProgramCard key={card.id} card={card} />
+          <ProgramCard
+            key={card.id}
+            card={card}
+            featuredOfferSlug={featuredOfferSlug}
+          />
         ))}
       </div>
     </section>
   );
 }
-
-// ─── Main Page ────────────────────────────────────────────────────────────────
 
 export default function ExplorePage() {
   const ugRef = useRef(null);
@@ -88,38 +150,35 @@ export default function ExplorePage() {
   const ecRef = useRef(null);
   const topRef = useRef(null);
   const [activeTab, setActiveTab] = useState("all");
-
   const [ugCards, setUgCards] = useState([]);
   const [pgCards, setPgCards] = useState([]);
   const [ecCards, setEcCards] = useState([]);
-
-  const apiUrl = import.meta.env.VITE_API_URL;
+  const [offers, setOffers] = useState([]);
 
   useEffect(() => {
     const fetchAll = async () => {
       try {
-        const [ugRes, pgRes, ecRes] = await Promise.all([
-          fetch(`${apiUrl}/course-detail/ug`),
-          fetch(`${apiUrl}/course-detail/pg`),
-          fetch(`${apiUrl}/course-detail/early-career`),
+        const [ugRes, pgRes, ecRes, offersRes] = await Promise.all([
+          axios.get(`${apiUrl}/course-detail/ug`),
+          axios.get(`${apiUrl}/course-detail/pg`),
+          axios.get(`${apiUrl}/course-detail/early-career`),
+          axios.get(`${apiUrl}/offers`).catch(() => ({ data: { data: [] } })),
         ]);
 
-        const [ugData, pgData, ecData] = await Promise.all([
-          ugRes.json(),
-          pgRes.json(),
-          ecRes.json(),
-        ]);
-
-        if (ugData.success) setUgCards(ugData.data.map(mapCourseToCard));
-        if (pgData.success) setPgCards(pgData.data.map(mapCourseToCard));
-        if (ecData.success) setEcCards(ecData.data.map(mapCourseToCard));
-      } catch (err) {
-        console.error("Failed to fetch course data:", err);
+        setUgCards((ugRes.data.data || []).map(mapCourseToCard));
+        setPgCards((pgRes.data.data || []).map(mapCourseToCard));
+        setEcCards((ecRes.data.data || []).map(mapCourseToCard));
+        setOffers(offersRes.data.data || []);
+      } catch (error) {
+        console.error("Failed to fetch explore data:", error);
       }
     };
 
     fetchAll();
   }, []);
+
+  const featuredOfferSlug =
+    offers.find((offer) => offer.isFeatured)?.slug || offers[0]?.slug || "";
 
   const scrollTo = (ref, tabName) => {
     if (ref?.current) {
@@ -129,323 +188,75 @@ export default function ExplorePage() {
   };
 
   return (
-    <>
-      <style>{`
-        body {
-          background: #ffffff;
-          color: #1a1a2e;
-          min-height: 100vh;
-        }
-
-        /* ── Page wrapper ── */
-        .explore-page {
-          max-width: 1200px;
-          margin: 20px auto;
-          padding: 0 16px 64px;
-        }
-
-        /* ── Hero Heading ── */
-        .page-hero {
-          padding: 48px 0 32px;
-          text-align: center;
-        }
-
-        .page-hero h1 {
-          font-size: clamp(1.8rem, 5vw, 3rem);
-          font-weight: 700;
-          color: #1a1a2e;
-          line-height: 1.2;
-          letter-spacing: -0.5px;
-        }
-
-        .page-hero h1 span {
-          color: #faad14;
-        }
-
-        .page-hero p {
-          margin-top: 12px;
-          font-size: 0.95rem;
-          color: #666;
-          font-family: 'Arial', sans-serif;
-        }
-
-        /* ── Sticky Nav Buttons ── */
-        .nav-tabs {
-          position: sticky;
-          top: 64px;
-          z-index: 50;
-          background: rgba(250, 248, 245, 0.92);
-          backdrop-filter: blur(10px);
-          -webkit-backdrop-filter: blur(10px);
-          padding: 12px 0;
-          display: flex;
-          gap: 10px;
-          justify-content: center;
-          flex-wrap: wrap;
-          border-bottom: 1px solid #e8e4f0;
-          margin-bottom: 40px;
-        }
-
-        .nav-btn {
-          font-size: 0.82rem;
-          font-weight: 600;
-          padding: 10px 20px;
-          border-radius: 10px 10px 0 0;
-          border-bottom: 2px solid #faad14;
-          background: #fff;
-          color: #000000;
-          cursor: pointer;
-          transition: all 0.2s ease;
-          white-space: nowrap;
-          letter-spacing: 0.3px;
-        }
-
-        .nav-btn:hover {
-          background: #faad14;
-          color: #000000;
-          border-color: #faad14;
-          transform: translateY(-1px);
-          box-shadow: 0 4px 14px rgba(91, 79, 207, 0.3);
-        }
-
-        .nav-btn.active {
-          background: #FAAD14;
-          color: #1a1a2e;
-          border-color: #FAAD14;
-          box-shadow: 0 4px 14px rgba(240, 192, 64, 0.4);
-        }
-
-        /* ── Section ── */
-        .section {
-          margin-bottom: 64px;
-          scroll-margin-top: 80px;
-        }
-
-        .section-header {
-          display: flex;
-          align-items: center;
-          gap: 12px;
-          margin-bottom: 28px;
-        }
-
-        .section-title {
-          font-size: clamp(1.3rem, 3.5vw, 1.8rem);
-          font-weight: 700;
-          color: #1a1a2e;
-          white-space: nowrap;
-        }
-
-        .section-arrow {
-          font-size: 1.4rem;
-          color: #faad14;
-          font-weight: 700;
-          flex-shrink: 0;
-        }
-
-        .section-line {
-          flex: 1;
-          height: 2px;
-          background: linear-gradient(to right, #5b4fcf33, transparent);
-          border-radius: 2px;
-        }
-
-        /* ── Cards Grid ── */
-        .cards-grid {
-          display: grid;
-          grid-template-columns: 1fr;
-          gap: 20px;
-        }
-
-        @media (min-width: 540px) {
-          .cards-grid {
-            grid-template-columns: repeat(2, 1fr);
-          }
-        }
-
-        @media (min-width: 900px) {
-          .cards-grid {
-            grid-template-columns: repeat(3, 1fr);
-          }
-        }
-
-        /* ── Card ── */
-        .program-card {
-          background: #fff;
-          border-radius: 20px;
-          padding: 24px 20px 20px;
-          display: flex;
-          flex-direction: column;
-          gap: 12px;
-          box-shadow: 0 12px 16px rgba(91, 79, 207, 0.07);
-          transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .program-card:hover {
-          transform: translateY(-4px);
-          box-shadow: 0 8px 28px rgba(91, 79, 207, 0.14);
-        }
-
-        .card-badge {
-          display: inline-block;
-          background: #1a1a2e;
-          color: #fff;
-          font-size: 0.72rem;
-          font-weight: 700;
-          letter-spacing: 0.5px;
-          padding: 7px 14px;
-          border-radius: 50px;
-          align-self: flex-start;
-        }
-
-        .card-heading {
-          font-size: 1.25rem;
-          font-weight: 700;
-          color: #1a1a2e;
-          line-height: 1.25;
-        }
-
-        .card-subheading {
-          font-size: 0.82rem;
-          font-weight: 600;
-          color: #faad14;
-          letter-spacing: 0.2px;
-        }
-
-        .card-description {
-          font-size: 0.87rem;
-          color: #555;
-          line-height: 1.6;
-          flex: 1;
-        }
-
-        .card-hours {
-          font-size: 0.85rem;
-          font-weight: 700;
-          color: #1a1a2e;
-          padding: 10px 0;
-          border-top: 1px solid #eee;
-          border-bottom: 1px solid #eee;
-        }
-
-        .card-meta {
-          display: flex;
-          flex-direction: column;
-          gap: 8px;
-        }
-
-        .card-meta-item {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          font-family: 'Arial', sans-serif;
-          font-size: 0.82rem;
-          color: #444;
-          font-weight: 600;
-        }
-
-        .meta-icon {
-          font-size: 1rem;
-        }
-
-        /* ── Buttons ── */
-        .card-actions {
-          display: flex;
-          gap: 10px;
-          margin-top: 4px;
-        }
-
-        .btn-explore,
-        .btn-register {
-          flex: 1;
-          padding: 11px 0;
-          border-radius: 8px;
-          font-family: 'Arial', sans-serif;
-          font-size: 0.82rem;
-          font-weight: 700;
-          letter-spacing: 0.3px;
-          cursor: pointer;
-          transition: all 0.2s ease;
-          border: 2px solid transparent;
-        }
-
-        .btn-explore {
-          background: #fff;
-          color: #000000;
-          border-color: #faad14;
-        }
-
-        .btn-explore:hover {
-          background: #faad14;
-          color: #000000;
-        }
-
-        .btn-register {
-          background: #faad14;
-          color: #000000;
-          border-color: #faad14;
-        }
-
-        .btn-register:hover {
-          background: #ffaa00;
-          border-color: #ffaa00;
-          box-shadow: 0 4px 12px rgba(91, 79, 207, 0.35);
-        }
-
-        /* ── Mobile tweaks ── */
-        @media (max-width: 400px) {
-          .nav-btn {
-            font-size: 0.75rem;
-            padding: 8px 14px;
-          }
-        }
-      `}</style>
-
-      <div className="explore-page" ref={topRef}>
-        {/* Hero */}
-        <div className="page-hero">
-          <h1>
-            Supervision &amp; <span>Mentorship</span>
+    <div className="bg-white pt-20" ref={topRef}>
+      <div className="mx-auto max-w-7xl px-4 pb-16">
+        <div className="py-12 text-center">
+          <h1 className="text-4xl font-bold text-gray-900 md:text-5xl">
+            Supervision & <span className="text-[#FAAD14]">Mentorship</span>
           </h1>
-          <p>Choose a programme that fits your stage and goals.</p>
+          <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-gray-600 md:text-base">
+            Regular programmes ke saath live preview offers bhi available hain. Admin jo active
+            karega, wahi yahan dynamic tarike se show hoga.
+          </p>
         </div>
 
-        {/* Sticky Nav */}
-        <div className="nav-tabs">
-          <button
-            className={`nav-btn ${activeTab === "all" ? "active" : ""}`}
-            onClick={() => scrollTo(topRef, "all")}
-          >
-            All
-          </button>
-          <button
-            className={`nav-btn ${activeTab === "ug" ? "active" : ""}`}
-            onClick={() => scrollTo(ugRef, "ug")}
-          >
-            Undergraduate
-          </button>
-          <button
-            className={`nav-btn ${activeTab === "pg" ? "active" : ""}`}
-            onClick={() => scrollTo(pgRef, "pg")}
-          >
-            Postgraduate
-          </button>
-          <button
-            className={`nav-btn ${activeTab === "ec" ? "active" : ""}`}
-            onClick={() => scrollTo(ecRef, "ec")}
-          >
-            Early Career Professional
-          </button>
+        {offers.length > 0 && (
+          <section className="mb-14">
+            <div className="mb-8 flex items-end justify-between gap-4">
+              <div>
+                <p className="text-xs uppercase tracking-[0.3em] text-gray-500">
+                  Live Preview Offers
+                </p>
+              </div>
+            </div>
+            <div className="">
+              {offers.map((offer) => (
+                <PreviewOfferCard key={offer._id} offer={offer} />
+              ))}
+            </div>
+          </section>
+        )}
+
+        <div className="sticky top-16 z-40 mb-10 flex flex-wrap justify-center gap-3 border-b border-[#e8e4f0] bg-white/95 py-4 backdrop-blur">
+          {[
+            { label: "All", value: "all", ref: topRef },
+            { label: "Undergraduate", value: "ug", ref: ugRef },
+            { label: "Postgraduate", value: "pg", ref: pgRef },
+            { label: "Early Career Professional", value: "ec", ref: ecRef },
+          ].map((tab) => (
+            <button
+              key={tab.value}
+              onClick={() => scrollTo(tab.ref, tab.value)}
+              className={`rounded-t-xl border-b-2 px-5 py-3 text-sm font-semibold transition ${
+                activeTab === tab.value
+                  ? "border-[#FAAD14] bg-[#FAAD14] text-black"
+                  : "border-[#FAAD14] bg-white text-black hover:bg-[#FAAD14]"
+              }`}
+            >
+              {tab.label}
+            </button>
+          ))}
         </div>
 
-        {/* Undergraduate */}
-        <Section sectionRef={ugRef} title="Undergraduate" cards={ugCards} />
-
-        {/* Postgraduate */}
-        <Section sectionRef={pgRef} title="Postgraduate" cards={pgCards} />
-
-        {/* Early Career Professional */}
-        <Section sectionRef={ecRef} title="Early Career Professional" cards={ecCards} />
+        <Section
+          sectionRef={ugRef}
+          title="Undergraduate"
+          cards={ugCards}
+          featuredOfferSlug={featuredOfferSlug}
+        />
+        <Section
+          sectionRef={pgRef}
+          title="Postgraduate"
+          cards={pgCards}
+          featuredOfferSlug={featuredOfferSlug}
+        />
+        <Section
+          sectionRef={ecRef}
+          title="Early Career Professional"
+          cards={ecCards}
+          featuredOfferSlug={featuredOfferSlug}
+        />
       </div>
-    </>
+    </div>
   );
 }

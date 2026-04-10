@@ -7,11 +7,12 @@ import DownArrow from '../assets/DownArrow.svg'
 import YellowLine from '../assets/YellowLine.svg'
 //import { API_URL } from "../constant/APIConstant";
 //import Header from "./Header";
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 //import BatchModal from "../components/BatchModal";
 //import { useSelector } from "react-redux";
 import { Modal } from 'antd'
 import { Question } from '@phosphor-icons/react'
+import { navigateToFeaturedOfferRegistration } from '../utils/featuredOffer'
 //import { useRecoilState, useRecoilValue } from "recoil";
 //import { dapatom } from "../recoil/DAP";
 
@@ -208,6 +209,8 @@ const courseData = {
 }
 
 const ExploreCourses = () => {
+  const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5002/api'
+  const navigate = useNavigate()
   const [selectedSection, setSelectedSection] = useState('learning')
   const [openSection, setOpenSection] = useState(0)
   const [openSectionOutcome, setOpenSectionOutcome] = useState(0)
@@ -223,8 +226,6 @@ const ExploreCourses = () => {
   const { id } = useParams()
   //const courseData = coursedata.filter((data) => data._id===id)
   //console.log(courseData[0])
-
-  const apiUrl = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     if (!id) return
@@ -245,7 +246,7 @@ const ExploreCourses = () => {
     }
 
     fetchData()
-  }, [id])
+  }, [apiUrl, id])
 
   //const hen=useRecoilValue(dapatom);
   //let subcategory = hen?.selectedCourse?.subcategory;
@@ -279,6 +280,14 @@ const ExploreCourses = () => {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' })
     }
+  }
+
+  const handleEnroll = async () => {
+    await navigateToFeaturedOfferRegistration({
+      navigate,
+      sourceCourseTitle: details?.title || '',
+      fallbackHeading: details?.title || '2 Hour Preview of the Training',
+    })
   }
 
   // ── Shared style tokens ──────────────────────────────────────────────────
@@ -347,11 +356,7 @@ const ExploreCourses = () => {
           {/* Enroll button — desktop */}
           <div className='my-8 sm:flex hidden'>
             <button
-              onClick={() => {
-                window.location.href = `https://wa.me/918448154111?text=${encodeURIComponent(
-                  `Hi, I want to enroll in the course: ${details.title}`
-                )}`
-              }}
+              onClick={handleEnroll}
               style={{
                 background: yellow,
                 color: navy,
@@ -394,11 +399,7 @@ const ExploreCourses = () => {
           {/* Enroll button — mobile */}
           <div className='my-8 sm:hidden flex'>
             <button
-              onClick={() => {
-                window.location.href = `https://wa.me/918448154111?text=${encodeURIComponent(
-                  `Hi, I want to enroll in the ${details.title}`
-                )}`
-              }}
+              onClick={handleEnroll}
               style={{
                 background: yellow,
                 color: navy,

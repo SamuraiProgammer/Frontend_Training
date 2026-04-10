@@ -2,6 +2,7 @@ import React from "react";
 import Becoming from "../assets/BecomingBlack.png";
 
 import { Link, useNavigate } from "react-router-dom";
+import { navigateToFeaturedOfferRegistration } from "../utils/featuredOffer";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -13,6 +14,10 @@ const Navbar = () => {
   //     navigate("/login");
   //   }
   // };
+
+  const handleRegisterClick = async () => {
+    await navigateToFeaturedOfferRegistration({ navigate });
+  };
 
   return (
     <nav className="fixed top-0 z-50 w-full bg-white shadow-sm">
@@ -33,7 +38,7 @@ const Navbar = () => {
           {/* Login / Logout Button */}
           <button
             className="rounded-lg px-6 py-2.5 text-sm font-semibold cursor-pointer text-black bg-[#faad14] hover:bg-[#ffc53d]"
-            onClick={()=> navigate("/register")}
+            onClick={handleRegisterClick}
           >
             {/* {user ? "Logout" : "Login"} */}
             Register
