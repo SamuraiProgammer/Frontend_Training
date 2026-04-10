@@ -18,7 +18,7 @@ import { navigateToFeaturedOfferRegistration } from '../utils/featuredOffer'
 
 const buttonData = [
   { name: 'learning', label: 'Learning' },
-  { name: 'skills', label: 'Skills' },
+  // { name: 'skills', label: 'Skills' },
   { name: 'pedagogy', label: 'Pedagogy' },
   { name: 'outcomes', label: 'Outcomes' },
   { name: 'course', label: 'Course Structure' }
@@ -441,7 +441,7 @@ const ExploreCourses = () => {
             gap: '16px'
           }}
         >
-          {details?.university !== '677661a47b6cc38356bc6ad3' && (
+          {/* {details?.university !== '677661a47b6cc38356bc6ad3' && (
             <div
               style={{
                 display: 'flex',
@@ -475,7 +475,7 @@ const ExploreCourses = () => {
                 </span>
               </p>
             </div>
-          )}
+          )} */}
 
           <div
             style={{
@@ -615,7 +615,7 @@ const ExploreCourses = () => {
         </div>
 
         {/* Skills */}
-        <div id='skills' style={{ marginTop: '56px' }}>
+        {/* <div id='skills' style={{ marginTop: '56px' }}>
           <h2
             style={{
               fontSize: 'clamp(1.5rem, 4vw, 2.8rem)',
@@ -653,7 +653,7 @@ const ExploreCourses = () => {
               </span>
             ))}
           </div>
-        </div>
+        </div> */}
 
         {/* Pedagogy */}
         <div style={{ marginTop: '56px' }}>
