@@ -82,14 +82,14 @@ export default function OfferCheckout() {
   };
 
   const validateStepOne = () => {
-    if (!form.name.trim()) return "Name required hai";
-    if (!form.email.trim()) return "Email required hai";
+    if (!form.name.trim()) return "Name is Required";
+    if (!form.email.trim()) return "Email is Required";
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim())) {
       return "Valid email enter karo";
     }
-    if (!form.phone_no.trim()) return "Phone number required hai";
-    if (!form.college.trim()) return "College required hai";
-    if (!form.currentAcademicProgram.trim()) return "Academic program required hai";
+    if (!form.phone_no.trim()) return "Phone number is Required";
+    if (!form.college.trim()) return "College is Required";
+    if (!form.currentAcademicProgram.trim()) return "Academic program is Required";
     return null;
   };
 
@@ -118,7 +118,7 @@ export default function OfferCheckout() {
 
   const handlePayment = async () => {
     if (!offer || !selectedBatch) {
-      toast.error("Offer ya batch data missing hai");
+      toast.error("Offer or Batch Data is Missing");
       return;
     }
 
@@ -155,7 +155,7 @@ export default function OfferCheckout() {
 
 //console.log("STEP 4: window.Razorpay", window.Razorpay);
       if (!isLoaded || !window.Razorpay) {
-        toast.error("Razorpay checkout load nahi hua");
+        toast.error("Razorpay checkout loading Failed");
         return;
       }
 
@@ -201,7 +201,7 @@ export default function OfferCheckout() {
 }
     } catch (error) {
       console.error(error);
-      toast.error(error?.response?.data?.message || "Payment start nahi hua");
+      toast.error(error?.response?.data?.message || "Payment start Failed");
     } finally {
       if (!window.Razorpay) {
         setPaying(false);
@@ -218,7 +218,7 @@ export default function OfferCheckout() {
       <div className="px-6 py-32 text-center">
         <h1 className="text-2xl font-bold text-gray-900">Offer unavailable</h1>
         <p className="mt-3 text-sm text-gray-600">
-          Preview registration abhi available nahi hai.
+          Preview registration is not available currently.
         </p>
       </div>
     );

@@ -130,11 +130,11 @@ export default function OfferExplore() {
   {/* Section A */}
   <div className="rounded-[32px] bg-white p-8 shadow-sm">
     <div className="flex items-center gap-4">
-      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-[#FAAD14] text-sm font-bold text-black">
+      {/* <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-[#FAAD14] text-sm font-bold text-black">
         A
-      </span>
+      </span> */}
       <div>
-        <p className="text-xs uppercase tracking-[0.3em] text-gray-500">40 mins</p>
+        <p className="text-xs uppercase tracking-[0.3em] text-gray-500">Duration: 40 mins</p>
         <h3 className="text-xl font-bold text-gray-900">Meet the Team &amp; the Vision</h3>
       </div>
     </div>
@@ -223,11 +223,11 @@ export default function OfferExplore() {
   {/* Section B */}
   <div className="rounded-[32px] bg-white p-8 shadow-sm">
     <div className="flex items-center gap-4">
-      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-[#FAAD14] text-sm font-bold text-black">
+      {/* <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-[#FAAD14] text-sm font-bold text-black">
         B
-      </span>
+      </span> */}
       <div>
-        <p className="text-xs uppercase tracking-[0.3em] text-gray-500">30 mins</p>
+        <p className="text-xs uppercase tracking-[0.3em] text-gray-500">Duration: 30 mins</p>
         <h3 className="text-xl font-bold text-gray-900">How You Will Actually Learn</h3>
       </div>
     </div>
@@ -296,11 +296,11 @@ export default function OfferExplore() {
   {/* Section C */}
   <div className="rounded-[32px] bg-white p-8 shadow-sm">
     <div className="flex items-center gap-4">
-      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-[#FAAD14] text-sm font-bold text-black">
+      {/* <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-[#FAAD14] text-sm font-bold text-black">
         C
-      </span>
+      </span> */}
       <div>
-        <p className="text-xs uppercase tracking-[0.3em] text-gray-500">30 mins</p>
+        <p className="text-xs uppercase tracking-[0.3em] text-gray-500">Duration: 30 mins</p>
         <h3 className="text-xl font-bold text-gray-900">Building Your Clinical Acumen</h3>
       </div>
     </div>
@@ -342,11 +342,11 @@ export default function OfferExplore() {
   {/* Section D */}
   <div className="rounded-[32px] bg-white p-8 shadow-sm">
     <div className="flex items-center gap-4">
-      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-[#FAAD14] text-sm font-bold text-black">
+      {/* <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-[#FAAD14] text-sm font-bold text-black">
         D
-      </span>
+      </span> */}
       <div>
-        <p className="text-xs uppercase tracking-[0.3em] text-gray-500">20 mins</p>
+        <p className="text-xs uppercase tracking-[0.3em] text-gray-500">Duration: 20 mins</p>
         <h3 className="text-xl font-bold text-gray-900">Open Q&amp;A</h3>
       </div>
     </div>
