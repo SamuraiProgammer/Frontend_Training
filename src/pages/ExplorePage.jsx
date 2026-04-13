@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 
-const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5002/api";
+const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
 
 const mapCourseToCard = (item) => ({
   id: item._id,
@@ -211,7 +211,7 @@ export default function ExplorePage() {
                 </p>
               </div>
             </div>
-            <div className="">
+            <div className="flex flex-col gap-5">
               {offers.map((offer) => (
                 <PreviewOfferCard key={offer._id} offer={offer} />
               ))}

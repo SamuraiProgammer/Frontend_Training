@@ -18,25 +18,24 @@ const getPositionStyles = (offset) => {
 const Client3DCarousel = () => {
   const [centerIndex, setCenterIndex] = useState(2);
 
-const getYouTubeEmbedUrl = (url, autoplay = false) => {
-  const videoId = url.split("/").pop().split("?")[0];
+  const getYouTubeEmbedUrl = (url, autoplay = false) => {
+    const videoId = url.split("/").pop().split("?")[0];
 
-  return `https://www.youtube.com/embed/${videoId}?autoplay=${
-    autoplay ? 1 : 0
-  }&mute=1&controls=0&modestbranding=1&rel=0&playsinline=1&enablejsapi=1`;
-};
+    return `https://www.youtube.com/embed/${videoId}?autoplay=${
+      autoplay ? 1 : 0
+    }&mute=1&controls=0&modestbranding=1&rel=0&playsinline=1&enablejsapi=1`;
+  };
 
-const unmuteVideo = (iframe) => {
-  iframe.contentWindow.postMessage(
-    JSON.stringify({
-      event: "command",
-      func: "unMute",
-      args: [],
-    }),
-    "*"
-  );
-};
-
+  const unmuteVideo = (iframe) => {
+    iframe.contentWindow.postMessage(
+      JSON.stringify({
+        event: "command",
+        func: "unMute",
+        args: [],
+      }),
+      "*",
+    );
+  };
 
   const moveLeft = () => {
     setCenterIndex((i) => (i === 0 ? clients.length - 1 : i - 1));
@@ -49,7 +48,6 @@ const unmuteVideo = (iframe) => {
   return (
     <div className="relative mx-auto mt-20 h-[300px] sm:h-[500px] max-w-6xl perspective-[1200px]">
       <div className="relative flex h-full items-center justify-center max-xl:hidden">
-
         {clients.map((client, index) => {
           let offset = index - centerIndex;
           if (offset > 2) offset -= clients.length;
@@ -66,22 +64,23 @@ const unmuteVideo = (iframe) => {
             >
               <div className="relative h-[570px] w-[360px] overflow-hidden rounded-3xl shadow-2xl bg-black">
                 <button
-  onClick={(e) => {
-    const iframe = e.currentTarget.parentElement.querySelector("iframe");
-    unmuteVideo(iframe);
-  }}
-  className="absolute top-4 right-4 z-10 bg-black/60 text-white px-3 py-1 rounded-full text-xs"
->
-  🔊 Unmute
-</button>
+                  onClick={(e) => {
+                    const iframe =
+                      e.currentTarget.parentElement.querySelector("iframe");
+                    unmuteVideo(iframe);
+                  }}
+                  className="absolute top-4 right-4 z-10 bg-black/60 text-white px-3 py-1 rounded-full text-xs"
+                >
+                  🔊 Unmute
+                </button>
 
                 <iframe
-  key={client.id + "-" + centerIndex}
-  src={getYouTubeEmbedUrl(client.videoLink, isCenter)}
-  className="h-full w-full object-cover"
-  allow="autoplay"
-  allowFullScreen
-/>
+                  key={client.id + "-" + centerIndex}
+                  src={getYouTubeEmbedUrl(client.videoLink, isCenter)}
+                  className="h-full w-full object-cover"
+                  allow="autoplay"
+                  allowFullScreen
+                />
 
                 {/* <div className="absolute bottom-4 left-4 right-4 rounded-2xl bg-[#391085] p-4 text-white">
                   <p className="text-lg font-semibold text-center">{client.name}</p>
@@ -110,7 +109,7 @@ const unmuteVideo = (iframe) => {
           );
         })}
       </div>
-      
+
       <div className="relative flex h-full items-center justify-center xl:hidden max-sm:hidden">
         {clients.map((client, index) => {
           let offset = index - centerIndex;
@@ -133,22 +132,32 @@ const unmuteVideo = (iframe) => {
         ${mobileStyles[offset] || "hidden"}`}
             >
               <div className="relative h-[460px] w-[85vw] max-w-[300px] overflow-hidden rounded-3xl shadow-2xl bg-black">
+                <button
+                  onClick={(e) => {
+                    const iframe =
+                      e.currentTarget.parentElement.querySelector("iframe");
+                    unmuteVideo(iframe);
+                  }}
+                  className="absolute top-4 right-4 z-10 bg-black/60 text-white px-3 py-1 rounded-full text-xs"
+                >
+                  🔊 Unmute
+                </button>
                 <iframe
-  key={client.id + "-" + centerIndex}
-  src={getYouTubeEmbedUrl(client.videoLink, isCenter)}
-  className="h-full w-full object-cover"
-  allow="autoplay"
-  allowFullScreen
-/>
+                  key={client.id + "-" + centerIndex}
+                  src={getYouTubeEmbedUrl(client.videoLink, isCenter)}
+                  className="h-full w-full object-cover"
+                  allow="autoplay"
+                  allowFullScreen
+                />
 
-                <div className="absolute bottom-4 left-4 right-4 rounded-2xl bg-[#391085] p-4 text-white">
+                {/* <div className="absolute bottom-4 left-4 right-4 rounded-2xl bg-[#391085] p-4 text-white">
                   <p className="text-lg font-semibold text-center">
                     {client.name}
                   </p>
                   <p className="text-xs opacity-80 text-center">
                     {client.role}
                   </p>
-                </div>
+                </div> */}
               </div>
 
               {isCenter && (
@@ -196,22 +205,32 @@ const unmuteVideo = (iframe) => {
         ${mobileStyles[offset] || "hidden"}`}
             >
               <div className="relative h-[300px] w-[200px] overflow-hidden rounded-3xl shadow-2xl bg-black">
+                <button
+                  onClick={(e) => {
+                    const iframe =
+                      e.currentTarget.parentElement.querySelector("iframe");
+                    unmuteVideo(iframe);
+                  }}
+                  className="absolute top-4 right-4 z-10 bg-black/60 text-white px-3 py-1 rounded-full text-xs"
+                >
+                  🔊 Unmute
+                </button>
                 <iframe
-  key={client.id + "-" + centerIndex}
-  src={getYouTubeEmbedUrl(client.videoLink, isCenter)}
-  className="h-full w-full object-cover"
-  allow="autoplay"
-  allowFullScreen
-/>
+                  key={client.id + "-" + centerIndex}
+                  src={getYouTubeEmbedUrl(client.videoLink, isCenter)}
+                  className="h-full w-full object-cover"
+                  allow="autoplay"
+                  allowFullScreen
+                />
 
-                <div className="absolute bottom-4 left-4 right-4 rounded-2xl bg-[#391085] p-4 text-white">
+                {/* <div className="absolute bottom-4 left-4 right-4 rounded-2xl bg-[#391085] p-4 text-white">
                   <p className="text-lg font-semibold text-center">
                     {client.name}
                   </p>
                   <p className="text-xs opacity-80 text-center">
                     {client.role}
                   </p>
-                </div>
+                </div> */}
               </div>
 
               {isCenter && (

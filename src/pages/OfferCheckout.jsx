@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { loadRazorpay } from "../utils/loadRazorpay";
 
-const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5002/api";
+const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
 
 const formatDateTime = (value) =>
   value
@@ -124,7 +124,6 @@ export default function OfferCheckout() {
 
     try {
       setPaying(true);
-//console.log("STEP 1: calling create order");
       const orderRes = await axios.post(`${apiUrl}/offers/${slug}/create-order`, {
         batchId: selectedBatchId,
         sourceCourseTitle,
@@ -137,9 +136,7 @@ export default function OfferCheckout() {
           currentAcademicProgram: form.currentAcademicProgram.trim(),
         },
       });
-      //console.log(orderRes.data);
       const orderData = orderRes.data.data;
-      //console.log(orderData)
       if (orderData.paymentMode === "mock") {
         await handleVerify({
           registrationId: orderData.registrationId,
@@ -149,11 +146,7 @@ export default function OfferCheckout() {
         });
         return;
       }
-//console.log("STEP 2: order response", orderRes.data);
       const isLoaded = await loadRazorpay();
-      //console.log("STEP 3: Razorpay loaded?", isLoaded);
-
-//console.log("STEP 4: window.Razorpay", window.Razorpay);
       if (!isLoaded || !window.Razorpay) {
         toast.error("Razorpay checkout loading Failed");
         return;
@@ -193,7 +186,6 @@ export default function OfferCheckout() {
           }
         },
       });
-      //console.log("Razorpay instance:", razorpay);
       try {
   razorpay.open();
 } catch (e) {

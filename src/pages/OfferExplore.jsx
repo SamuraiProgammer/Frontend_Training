@@ -5,7 +5,7 @@ import img1 from "../assets/team/sumeet.png"
 import img2 from "../assets/team/astha.jpg"
 import img3 from "../assets/team/anwesha.jpg"
 
-const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5002/api";
+const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
 
 const formatDateTime = (value) =>
   value
@@ -130,9 +130,6 @@ export default function OfferExplore() {
   {/* Section A */}
   <div className="rounded-[32px] bg-white p-8 shadow-sm">
     <div className="flex items-center gap-4">
-      {/* <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-[#FAAD14] text-sm font-bold text-black">
-        A
-      </span> */}
       <div>
         <p className="text-xs uppercase tracking-[0.3em] text-gray-500">Duration: 40 mins</p>
         <h3 className="text-xl font-bold text-gray-900">Meet the Team &amp; the Vision</h3>
@@ -223,9 +220,6 @@ export default function OfferExplore() {
   {/* Section B */}
   <div className="rounded-[32px] bg-white p-8 shadow-sm">
     <div className="flex items-center gap-4">
-      {/* <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-[#FAAD14] text-sm font-bold text-black">
-        B
-      </span> */}
       <div>
         <p className="text-xs uppercase tracking-[0.3em] text-gray-500">Duration: 30 mins</p>
         <h3 className="text-xl font-bold text-gray-900">How You Will Actually Learn</h3>
@@ -342,9 +336,6 @@ export default function OfferExplore() {
   {/* Section D */}
   <div className="rounded-[32px] bg-white p-8 shadow-sm">
     <div className="flex items-center gap-4">
-      {/* <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-[#FAAD14] text-sm font-bold text-black">
-        D
-      </span> */}
       <div>
         <p className="text-xs uppercase tracking-[0.3em] text-gray-500">Duration: 20 mins</p>
         <h3 className="text-xl font-bold text-gray-900">Open Q&amp;A</h3>

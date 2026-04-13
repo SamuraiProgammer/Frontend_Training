@@ -1,56 +1,35 @@
-import Video from "../assets/video.mp4";
-
-const clientImg2 = "https://corportal.s3.ap-south-1.amazonaws.com/Becoming/d1854121-client2.jpeg.jpg"
-const clientImg3 = "https://corportal.s3.ap-south-1.amazonaws.com/Becoming/ea33fe26-client3.jpeg.jpg"
-const clientImg4 = "https://corportal.s3.ap-south-1.amazonaws.com/Becoming/5f4499e9-client4.jpeg.jpg"
-const clientImg5 = "https://corportal.s3.ap-south-1.amazonaws.com/Becoming/af214bbd-client5.jpeg.jpg"
-const clientImg6 = "https://corportal.s3.ap-south-1.amazonaws.com/Becoming/adc71338-client6.jpeg.jpg"
-const clientImg7 = "https://corportal.s3.ap-south-1.amazonaws.com/Becoming/65e6ffbf-client7.jpeg.jpg"
-
 import sumeet from "../assets/team/sumeet.png";
 
 export const clients = [
   {
     id: 1,
-    name: "Sugandha Thakur",
+    name: "Swati & Manya",
     role: "Client - Speaking",
-    image: clientImg7,
-    videoLink: "https://youtube.com/shorts/raacT7uhuqE?si=9JhydpLK_GMbJF-l",
+    videoLink: "https://youtube.com/shorts/ixee2bBq4M8?si=57pBe8d5o9LgE6RR",
   },
   {
     id: 2,
-    name: "Akash Sharma",
+    name: "Nainika Burman",
     role: "Client - Speaking",
-    image: clientImg2,
-    videoLink: "https://youtube.com/shorts/raacT7uhuqE?si=9JhydpLK_GMbJF-l",
+    videoLink: "https://youtube.com/shorts/5YZr0pPZFYU?si=jSo14OCqzlktfyj-",
   },
   {
     id: 3,
-    name: "Aaliyah Siddiqui",
+    name: "Samriddhi Verma",
     role: "Client - Speaking",
-    image: clientImg3,
-    videoLink: "https://youtube.com/shorts/raacT7uhuqE?si=9JhydpLK_GMbJF-l",
+    videoLink: "https://youtube.com/shorts/ZcIxj56t_K8?feature=share",
   },
   {
     id: 4,
-    name: "Piyush Lepcha",
+    name: "Nataliya Arora",
     role: "Client - Speaking",
-    image: clientImg4,
-    videoLink: "https://youtube.com/shorts/raacT7uhuqE?si=9JhydpLK_GMbJF-l",
+    videoLink: "https://youtube.com/shorts/l7KBaTEF_YQ?feature=share",
   },
   {
-    id: 2,
-    name: "Ranjan Gogoi",
+    id: 5,
+    name: "Prisha Jain",
     role: "Client - Speaking",
-    image: clientImg5,
-    videoLink: "https://youtube.com/shorts/raacT7uhuqE?si=9JhydpLK_GMbJF-l",
-  },
-  {
-    id: 3,
-    name: "Suman Choudhary",
-    role: "Client - Speaking",
-    image: clientImg6,
-    videoLink: "https://youtube.com/shorts/raacT7uhuqE?si=9JhydpLK_GMbJF-l",
+    videoLink: "https://youtube.com/shorts/TffD-wG89lI?feature=share",
   },
 ];
 

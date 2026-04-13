@@ -304,11 +304,10 @@ const dropdownItemStyle = {
 // ─── Main Page ────────────────────────────────────────────────────────────────
 
 export default function RegisterPage({heading="2 Hour Preview of the Training @ Just ₹500"}) {
-  //const whatsappNumber = String(import.meta.env.WHATSAPP_NUMBER);
   const whatsappNumber = "918448154111"
   const navigate = useNavigate();
   const location = useLocation();
-  const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5002/api";
+  const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
   const resolvedHeading = location.state?.heading || heading;
   const [checkingOffer, setCheckingOffer] = useState(true);
 
