@@ -118,12 +118,8 @@ export default function OfferExplore() {
     <p className="mt-2 text-lg font-semibold text-gray-700">
       An Interactive Orientation for Future Interns at The Whole Point
     </p>
-    <p className="mt-4 max-w-3xl text-base leading-7 text-gray-600">
-      This 2-hour immersive session is designed to help you understand not just what
-      the internship offers, but how you will actually learn, grow, and practise within
-      it. It's a transparent, experience-led walkthrough of our training philosophy,
-      pedagogy, and clinical approach — so you can make an informed decision about
-      your learning journey.
+    <p className="mt-4 text-justify text-base leading-7 text-gray-600">
+      This 2-hour immersive session is designed to help you understand not just what the internship offers, but how you will actually learn, grow, and practice within it. It’s a transparent, experience-led walkthrough of our training philosophy, pedagogy, and clinical approach  so you can make an informed decision about your learning journey.
     </p>
   </div>
 
@@ -132,29 +128,32 @@ export default function OfferExplore() {
     <div className="flex items-center gap-4">
       <div>
         <p className="text-xs uppercase tracking-[0.3em] text-gray-500">Duration: 40 mins</p>
-        <h3 className="text-xl font-bold text-gray-900">Meet the Team &amp; the Vision</h3>
+        <h3 className="text-xl font-bold text-gray-900">Meet the Team You’ll Learn With (40 mins)</h3>
       </div>
     </div>
     <p className="mt-4 text-sm leading-6 text-gray-600">
-      Get to know the people and philosophy behind your learning experience.
+      Get to know the people, perspectives, and philosophy that shape your learning experience. This is an interactive beginning to the programme, where you’ll hear directly from the trainers and experts about their approach, areas of work, and what you can expect from the learning experience. You’ll also have the space to engage and ask questions.
     </p>
 
     <div className="mt-6 space-y-4">
       <div className="rounded-3xl bg-[#faf8f5] p-5">
-        <h4 className="font-bold text-gray-900">Introduction to The Whole Point</h4>
+        <p className="text-xs uppercase tracking-[0.3em] text-gray-500">Duration: 10 mins</p>
+        <h4 className="font-bold text-gray-900">Introduction to The Whole Point (10 mins)</h4>
         <p className="mt-1 text-sm leading-6 text-gray-600">
-          Understanding our approach to mental health, training, and building
-          practice-ready professionals.
+          An overview of our approach to mental health, training, and building practice-ready professionals.
         </p>
       </div>
 
       <div className="rounded-3xl bg-[#faf8f5] p-5">
-        <h4 className="font-bold text-gray-900">Meet the Founders &amp; Core Team</h4>
+        <h4 className="font-bold text-gray-900">The Team ( 30 mins )</h4>
+        <p className="mt-1 text-sm leading-6 text-gray-600">This learning space is built by clinicians, trainers, and system builders — bringing together experience across practice, training, and the design of care systems.</p>
         <div className="mt-3 grid gap-3 sm:grid-cols-3">
           {[
-            { name: "Sumeet Singh", role: "Business & Technology", img: img1 },
-            { name: "Astha Nagpal", role: "Clinical Leadership", img: img2 },
-            { name: "Anwesha", role: "Training & Clinical Practice", img: img3 },
+            { name: "Sumeet Singh", role: "Founder & CEO (Business & Technology)", img: img1 },
+            { name: "Astha Nagpal", role: "Founder & Chief Clinical Psychologist", img: img2 },
+            { name: "Anwesha", role: "Counseling Psychologist & Lead Trainer", img: img3 },
+            { name: "Kanishka", role: " Counseling Psychologist (Expressive Arts Therapist) & Trainer", img: "https://corportal.s3.ap-south-1.amazonaws.com/upload/profilePic/0315edc18213127f8bbcc12a1c3ab7be.jpg" },
+            { name: "Pratyakshi", role: "Counseling Psychologist (Psychodynamic Psychotherapist) & Trainer", img: "https://corportal.s3.ap-south-1.amazonaws.com/upload/profilePic/f218ee1ef93ca0e858a6da3dac5eb38a.png" },
           ].map((person) => {
     const initials = person.name.split(" ").map((n) => n[0]).join("");
     return (
@@ -181,7 +180,7 @@ export default function OfferExplore() {
         </div>
       </div>
 
-      <div className="rounded-3xl bg-[#faf8f5] p-5">
+      {/* <div className="rounded-3xl bg-[#faf8f5] p-5">
         <h4 className="font-bold text-gray-900">Trainer Introductions (Deep Dive)</h4>
         <p className="mt-1 text-sm text-gray-600">
           Each trainer brings a distinct lens to your learning:
@@ -213,7 +212,7 @@ export default function OfferExplore() {
     </div>
           ))}
         </div>
-      </div>
+      </div> */}
     </div>
   </div>
 
@@ -229,36 +228,33 @@ export default function OfferExplore() {
       Led by Astha Nagpal, supported by Anwesha
     </p>
     <p className="mt-3 text-sm leading-6 text-gray-600">
-      This section breaks down how we bridge the gap between theory and real-world
-      practice. You'll experience the structure that makes this internship hands-on,
-      reflective, and clinically grounded.
+      Get a real sense of how this programme moves beyond theory into real-world practice.
     </p>
+    <p className="mt-3 text-sm leading-6 text-gray-600">This segment walks you through how learning is structured — what you will actively engage with, how skills are built over time, and what it means to train in a clinically grounded, practice-focused environment.
+</p>
+<p className="mt-3 font-semibold text-sm leading-6 text-gray-900">You’ll be introduced to key learning formats, including:</p>
 
     <div className="mt-6 grid gap-3 sm:grid-cols-2">
       {[
         {
           title: "Role Plays & Case Simulations",
-          desc: "Practise real-life therapeutic situations in a guided environment.",
+          desc: " Practise real therapeutic situations in a guided, feedback-oriented space",
         },
         {
-          title: "Case Discussions & Presentations",
-          desc: "Learn how to think, analyse, and present like a therapist.",
+          title: "Case Discussions",
+          desc: "Learn how to think through client concerns, identify patterns, and build perspective",
         },
         {
-          title: "Client Audio/Video Exposure (consented)",
-          desc: "Observe real therapeutic processes and interventions.",
+          title: "Fieldwork Across Settings",
+          desc: "Exposure to diverse environments including rehabilitation centres, schools, juvenile settings, NGOs, and corporate spaces",
         },
         {
-          title: "Volunteer Client Sessions",
-          desc: "Structured, supervised opportunities to engage with clients.",
-        },
-        {
-          title: "Intergroup Reflection Spaces",
-          desc: "Build self-awareness and reflective capacity.",
+          title: "Reflection Spaces",
+          desc: "Develop self-awareness and the ability to process your own responses within the therapeutic setting",
         },
         {
           title: "AI-Based Client Work",
-          desc: "Practise with simulated clients to develop real-time clinical skills.",
+          desc: "Engage with simulated clients to build real-time listening, response, and decision-making skills",
         },
       ].map((item) => (
         <div key={item.title} className="rounded-3xl bg-[#faf8f5] p-5">
@@ -290,19 +286,18 @@ export default function OfferExplore() {
   {/* Section C */}
   <div className="rounded-[32px] bg-white p-8 shadow-sm">
     <div className="flex items-center gap-4">
-      {/* <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-[#FAAD14] text-sm font-bold text-black">
-        C
-      </span> */}
       <div>
         <p className="text-xs uppercase tracking-[0.3em] text-gray-500">Duration: 30 mins</p>
-        <h3 className="text-xl font-bold text-gray-900">Building Your Clinical Acumen</h3>
+        <h3 className="text-xl font-bold text-gray-900">Building Clinical Thinking</h3>
       </div>
     </div>
-    <p className="mt-2 text-xs text-gray-500">Led by Anwesha</p>
+    <p className="mt-2 text-xs text-gray-500">Facilitated by Anwesha</p>
     <p className="mt-3 text-sm leading-6 text-gray-600">
       Move beyond theory into how therapists actually think in real situations.
     </p>
-
+      <p className="mt-3 text-sm leading-6 text-gray-600">
+      This segment gives you a closer look at the clinical processes involved in working with clients, including:
+    </p>
     <div className="mt-6 space-y-3">
       {[
         {
@@ -318,8 +313,8 @@ export default function OfferExplore() {
           desc: "Moving from observation to interpretation.",
         },
         {
-          title: "Client–Therapist Alignment (Matchmaking Process)",
-          desc: "How we ensure the right therapist fit for each client.",
+          title: "Client–Therapist Alignment",
+          desc: " How we think about matching clients with the right therapist",
         },
       ].map((item) => (
         <div key={item.title} className="flex gap-4 rounded-3xl bg-[#faf8f5] p-5">

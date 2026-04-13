@@ -33,9 +33,9 @@ const AIClient = () => {
             className="mt-6 text-[24px] md:text-[36px] 
             font-extrabold leading-tight text-gray-900"
           >
-            AI Client Simulations for{" "}
+            AI Client Stimulations for{" "}
             <span className="text-[#faad14]">
-              Therapist Formation
+              Becoming Practice Ready Therapist
             </span>
           </h1>
 
