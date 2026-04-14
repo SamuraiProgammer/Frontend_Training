@@ -9,7 +9,7 @@
       "destination": "/index.html"
     }
   ],
-  "cron": [
+  "crons": [
     {
       "path": "/api/cron",
       "schedule": "*/10 * * * *"
