@@ -410,12 +410,9 @@ export default function OfferExplore() {
 
 </section>
 
-        <section className="mt-8 grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
+        <section className="mt-8">
           <div className="rounded-[32px] bg-white p-8 shadow-sm">
             <p className="text-xs uppercase tracking-[0.3em] text-gray-500">Deliverables</p>
-            {/* <h2 className="mt-2 text-2xl font-bold text-gray-900">
-              Explore button ke baad exactly kya show hoga
-            </h2> */}
             <div className="mt-6 space-y-4">
               {(offer.deliverables || []).map((item) => (
                 <div key={item._id} className="rounded-3xl border border-gray-100 p-5">
@@ -426,16 +423,16 @@ export default function OfferExplore() {
             </div>
           </div>
 
-          <div className="space-y-8">
+          <div className="space-y-8 mt-8">
             <div className="rounded-[32px] bg-white p-8 shadow-sm">
               <p className="text-xs uppercase tracking-[0.3em] text-gray-500">Available batches</p>
               <h2 className="mt-2 text-2xl font-bold text-gray-900">Upcoming slots</h2>
-              <div className="mt-5 space-y-4">
+              <div className="mt-5 grid grid-cols-1 md:grid-cols-2 gap-8">
                 {activeBatches.length === 0 ? (
                   <p className="text-sm text-gray-600">No active batches right now.</p>
                 ) : (
                   activeBatches.map((batch) => (
-                    <div key={batch._id} className="rounded-3xl bg-[#faf8f5] p-5">
+                    <div key={batch._id} className="rounded-3xl  bg-[#faf8f5] p-5">
                       <div className="flex items-start justify-between gap-3">
                         <div>
                           <h3 className="text-base font-bold text-gray-900">{batch.title}</h3>

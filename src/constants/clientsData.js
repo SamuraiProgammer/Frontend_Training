@@ -8,16 +8,16 @@ export const clients = [
     videoLink: "https://youtube.com/shorts/ixee2bBq4M8?si=57pBe8d5o9LgE6RR",
   },
   {
-    id: 2,
-    name: "Nainika Burman",
-    role: "Client - Speaking",
-    videoLink: "https://youtube.com/shorts/5YZr0pPZFYU?si=jSo14OCqzlktfyj-",
-  },
-  {
     id: 3,
     name: "Samriddhi Verma",
     role: "Client - Speaking",
     videoLink: "https://youtube.com/shorts/ZcIxj56t_K8?feature=share",
+  },
+  {
+    id: 2,
+    name: "Nainika Burman",
+    role: "Client - Speaking",
+    videoLink: "https://youtube.com/shorts/5YZr0pPZFYU?si=jSo14OCqzlktfyj-",
   },
   {
     id: 4,
