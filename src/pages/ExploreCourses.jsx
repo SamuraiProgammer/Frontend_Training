@@ -411,7 +411,7 @@ const ExploreCourses = () => {
             bottom: 0,
             left: "50%",
             transform: "translate(-50%, 50%)",
-            width: "70%",
+            width: "50%",
             minHeight: "80px",
             padding: "18px 28px",
             background: "rgba(255, 255, 255, 0.9)",

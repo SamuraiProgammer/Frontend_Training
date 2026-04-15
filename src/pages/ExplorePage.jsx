@@ -75,13 +75,12 @@ function ProgramCard({ card, featuredOfferSlug }) {
   const navigate = useNavigate();
 
   const handleRegister = () => {
-    if (featuredOfferSlug) {
-      navigate(`/offers/${featuredOfferSlug}/register`, {
-        state: { sourceCourseTitle: card.heading },
-      });
-      return;
-    }
-
+    // if (featuredOfferSlug) {
+    //   navigate(`/offers/${featuredOfferSlug}/register`, {
+    //     state: { sourceCourseTitle: card.heading },
+    //   });
+    //   return;
+    // }
     navigate(`/register`, { state: { heading: card.heading } });
   };
 

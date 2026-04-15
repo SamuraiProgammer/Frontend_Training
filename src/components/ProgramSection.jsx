@@ -5,6 +5,7 @@ const ProgramCard = ({
   badgeColor,
   title,
   features = [],
+  navigateTo
 }) => {
   const navigate = useNavigate();
   return (
@@ -48,7 +49,9 @@ const ProgramCard = ({
           bg-[#faad14]
           hover:scale-105 hover:shadow-md 
           transition-all duration-300 cursor-pointer"
-          onClick={()=> navigate(`/explore/${title}`)}
+          onClick={()=> {
+            if(!navigateTo) navigate(`/explore/${title}`)
+            else navigate(navigateTo)}}
         >
           Explore
         </button>
@@ -79,6 +82,7 @@ export default function ProgramsSection() {
             badgeColor="text-cyan-600 bg-cyan-50"
             title="1 to 1 Mentorship Supervision Programme"
             features={["1–6 Months", "Certification"]}
+            navigateTo="/explore-course/69d8fc207ac08c5b8e608acc"
           />
 
         </div>

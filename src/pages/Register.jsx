@@ -309,7 +309,7 @@ export default function RegisterPage({heading="2 Hour Preview of the Training @ 
   const location = useLocation();
   const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
   const resolvedHeading = location.state?.heading || heading;
-  const [checkingOffer, setCheckingOffer] = useState(true);
+  //const [checkingOffer, setCheckingOffer] = useState(true);
 
   const [form, setForm] = useState({
     name: "",
@@ -345,31 +345,31 @@ Current Academic Program: ${form.course}`;
     return () => document.removeEventListener("mousedown", h);
   }, []);
 
-  useEffect(() => {
-    const shouldUseLegacyFlow = Boolean(location.state?.forceLegacy);
+  // useEffect(() => {
+  //   const shouldUseLegacyFlow = Boolean(location.state?.forceLegacy);
 
-    if (shouldUseLegacyFlow) {
-      setCheckingOffer(false);
-      return;
-    }
+  //   if (shouldUseLegacyFlow) {
+  //     setCheckingOffer(false);
+  //     return;
+  //   }
 
-    const redirectToFeaturedOffer = async () => {
-      try {
-        const offer = await fetchFeaturedOffer();
+  //   const redirectToFeaturedOffer = async () => {
+  //     try {
+  //       const offer = await fetchFeaturedOffer();
 
-        if (offer?.slug) {
-          navigate(`/offers/${offer.slug}/register`, { replace: true });
-          return;
-        }
-      } catch (error) {
-        console.error("Featured offer redirect skipped", error);
-      }
+  //       if (offer?.slug) {
+  //         navigate(`/offers/${offer.slug}/register`, { replace: true });
+  //         return;
+  //       }
+  //     } catch (error) {
+  //       console.error("Featured offer redirect skipped", error);
+  //     }
 
-      setCheckingOffer(false);
-    };
+  //     setCheckingOffer(false);
+  //   };
 
-    redirectToFeaturedOffer();
-  }, [location.state, navigate]);
+  //   redirectToFeaturedOffer();
+  // }, [location.state, navigate]);
 
   const filteredCodes = COUNTRY_CODES.filter(
     (c) =>
@@ -441,21 +441,21 @@ Current Academic Program: ${form.course}`;
     if (errors[field]) setErrors((prev) => ({ ...prev, [field]: "" }));
   };
 
-  if (checkingOffer) {
-    return (
-      <div
-        style={{
-          minHeight: "100vh",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          background: "#faf8f5",
-        }}
-      >
-        <p style={{ color: "#666", fontSize: "0.95rem" }}>Preparing registration flow...</p>
-      </div>
-    );
-  }
+  // if (checkingOffer) {
+  //   return (
+  //     <div
+  //       style={{
+  //         minHeight: "100vh",
+  //         display: "flex",
+  //         alignItems: "center",
+  //         justifyContent: "center",
+  //         background: "#faf8f5",
+  //       }}
+  //     >
+  //       <p style={{ color: "#666", fontSize: "0.95rem" }}>Preparing registration flow...</p>
+  //     </div>
+  //   );
+  // }
 
   if (submitted) {
     return (

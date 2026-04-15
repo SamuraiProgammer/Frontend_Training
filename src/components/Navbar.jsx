@@ -16,7 +16,8 @@ const Navbar = () => {
   // };
 
   const handleRegisterClick = async () => {
-    await navigateToFeaturedOfferRegistration({ navigate });
+    //await navigateToFeaturedOfferRegistration({ navigate });
+    navigate("/register")
   };
 
   return (
