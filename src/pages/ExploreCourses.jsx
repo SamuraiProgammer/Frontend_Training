@@ -336,7 +336,10 @@ const ExploreCourses = () => {
           {/* Enroll button — desktop */}
           <div className="my-8 sm:flex hidden">
             <button
-              onClick={handleEnroll}
+              //onClick={handleEnroll}
+              onClick={() => {
+                window.location.href = `https://wa.me/918448154111?text=${encodeURIComponent(`Hi, I want to enroll in the ${details.title}`)}`;
+              }}
               style={{
                 background: yellow,
                 color: navy,
@@ -379,7 +382,10 @@ const ExploreCourses = () => {
           {/* Enroll button — mobile */}
           <div className="my-8 sm:hidden flex">
             <button
-              onClick={handleEnroll}
+              //onClick={handleEnroll}
+              onClick={() => {
+                window.location.href = `https://wa.me/918448154111?text=${encodeURIComponent(`Hi, I want to enroll in the ${details.title}`)}`;
+              }}
               style={{
                 background: yellow,
                 color: navy,
